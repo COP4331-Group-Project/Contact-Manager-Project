@@ -91,19 +91,16 @@ body {
   width: 85%;
   padding: 10px 30px;
   cursor: pointer;
-  display: block;
   margin: auto;
   background: linear-gradient(to right, #A3BCF9, #7796CB);
   border: 0;
-  outline: none;
   border-radius: 30px;
-  color: white;
+  color: black;
 }
 
 #search {
   left: 50px;
 }
-
 #addContact {
 left: 450px;
 }
@@ -153,13 +150,56 @@ left: 450px;
 }
 
 /*Small Screen Adjustments*/
-@media (max-width: 830px) {
+@media (max-width: 865px) {
   .main-container {
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    margin: 25px;
   }
+  /* Table Styling */
   .contact-table {
     max-height: 100%;
     height: 390px;
+    margin-bottom: 15px;
+  }
+  /* Forms Styling */
+  .forms-wrapper {
+    width: 400px;
+    max-width: 85%;
+    height: 250px;
+    margin: 15px;
+  }
+  .button-box {
+    width: 220px;
+    margin: 15px auto;
+    position: relative;
+    box-shadow: 0 0 20px grey;
+    background-color: #D1D2F9;
+    border-radius: 30px;
+  }
+  .input-group {
+    top: 35%;
+    width: 350px;
+  }
+  .inputWrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+  .input-field {
+    position: relative;
+    right: 15%;
+    width: 160px;
+    max-width: 100%;
+  } 
+  .formButton {
+    margin: 10px;
+  }
+  .input-field::placeholder {
+    color: white;
+  }
+  .stacked {
+
   }
 }
