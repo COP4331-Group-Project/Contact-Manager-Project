@@ -232,3 +232,46 @@ thead {
   }
   
 }
+
+/* MODAL STYLING */
+.modal {
+  width: 400px;
+  height: 250px;
+  background-color: #576490;
+  background: blur(50%);
+  border: 1px solid black;
+  border-radius: 15px;
+  animation: slideIn 0.5s ease-out forwards;
+}
+
+.modal h3 {
+  text-align: center;
+}
+
+.modal-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-input-container {
+
+}
+
+.modal-input-row {
+  
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+/* Define the animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

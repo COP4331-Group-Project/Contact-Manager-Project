@@ -32,12 +32,16 @@ function deleteRow(button) {
 var editRowIndex = -1; // Track the row being edited
 
     function editRow(button) {
+      // Get the dialog element
+      const editForm = document.getElementById("editForm");
+      
       // Get the row index
       var row = button.parentNode.parentNode;
       editRowIndex = row.rowIndex;
 
       // Display the edit form
-      document.getElementById('editForm').style.display = 'block';
+      // document.getElementById('editForm').style.display = 'flex';
+      editForm.showModal();
 
       // Populate the form with row data
       document.getElementById('editFirstName').value = button.getAttribute('data-firstname');
@@ -55,9 +59,19 @@ var editRowIndex = -1; // Track the row being edited
       row.cells[2].textContent = document.getElementById('editEmail').value;
       row.cells[3].textContent = document.getElementById('editPhone').value;
 
-      // Hide the edit form
-      document.getElementById('editForm').style.display = 'none';
+      // Close the dialog
+      const editForm = document.getElementById("editForm");
+      editForm.close();
 
       // Reset the editRowIndex
       editRowIndex = -1;
     }
+
+function closeModal() {
+  // Close the dialog without saving changes
+  const editForm = document.getElementById("editForm");
+  editForm.close();
+    
+  // Reset the editRowIndex
+  editRowIndex = -1;
+}

@@ -66,85 +66,34 @@
                 </button>
               </td>
               <td>
-                <button class="editBtn" onClick="editRow(this)" data-firstname="Vincent" data-lastname="DiPietrantonio" data-email="V@gmail.com" data-phone="2223334444">
+                <button id="editButton" class="editBtn" onClick="editRow(this)" data-firstname="Vincent" data-lastname="DiPietrantonio" data-email="V@gmail.com" data-phone="2223334444">
                   Edit
                 </button>
               </td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-            </tr>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
             </tr>
           </tbody>
         </table>
 
         <!-- Edit form initially hiddent-->
-        <div id="editForm" style="display: none;">
+        <dialog id="editForm" class="modal">
           <h3>Edit Contact</h3>
-          <form id="editRowForm" onsubmit="updateRow(); return false;">
-            <input type="text" id="editFirstName" placeholder="First Name">
-            <input type="text" id="editLastName" placeholder="Last Name">
-            <input type="text" id="editEmail" placeholder="Email">
-            <input type="text" id="editPhone" placeholder="Phone Number">
-            <button type="submit">Save</button>
+          <form class="modal-form" id="editRowForm" onsubmit="updateRow(); return false;">
+            <div class="modal-input-container">
+              <div class="modal-input-row">
+                <input type="text" id="editFirstName" placeholder="First Name">
+                <input type="text" id="editLastName" placeholder="Last Name">
+              </div>
+              <div class="modal-input-row">
+                <input type="text" id="editEmail" placeholder="Email">
+                <input type="text" id="editPhone" placeholder="Phone Number">
+              </div>
+              <div class="modal-buttons">
+                <button type="button" onclick="closeModal()">Cancel</button>
+                <button type="submit">Save</button>
+              </div>
+            </div>
           </form>
-        </div>
+        </dialog>
       </div>
     </div>
     <script src="ContactList.js"></script>
