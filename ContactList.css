@@ -1,14 +1,12 @@
 body {
   font: 18px/1.5 Arial, sans-serif;
-  padding: 0 20px;
-  margin: 0 auto;
+  padding: 20px;
+  margin: 0;
   background-color: #D1D2F9;
 }
 
 .title {
-  margin-top: 5vh;
-  display: flex;
-  justify-content: center;
+text-align: center;
 }
 
 .main-container {
@@ -69,8 +67,8 @@ body {
 
 .input-field {
   width: 100%;
-  padding: 10px 0;
-  margin: 5px 0;
+  padding: 5px;
+  margin: 7px 0;
   border-left: 0;
   border-top: 0;
   border-right: 0;
@@ -78,6 +76,7 @@ body {
   background: transparent;
   color: white;
   outline: none;
+  font-size: 20px;
 }
 
 .input-field::placeholder {
@@ -89,7 +88,9 @@ body {
 }
 
 .submit-btn {
-  width: 85%;
+  display: flex;
+  justify-content: center;
+  width: 45px;
   padding: 10px 30px;
   cursor: pointer;
   margin: auto;
@@ -97,12 +98,17 @@ body {
   border: 0;
   border-radius: 30px;
   color: black;
-  transition: .3s;
+  transition: .5s;
+}
+
+.submit-btn img {
+  height: 20px;
+  width: 20px;
 }
 
 .submit-btn:hover {
   background: linear-gradient(to right, #BFD7FF, #95B2E1);
-  width: 95%;
+  width: 50%;
 }
 
 #search {
@@ -116,12 +122,11 @@ left: 450px;
 .contact-table {
   display: flex;
   justify-content: center;
-  max-width: 100%;
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
   max-height: 500px;
   overflow: auto;
   padding: 10px;
-  padding-top: 0;
   border-radius: 10px;
   border: 1px solid #000;
   margin-right: auto;
@@ -164,37 +169,48 @@ thead {
   border-right: none;
 }
 
-.deleteBtn {
-  width: 50px;
-  height: 30px;
+.editBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   background-color: white;
   color: black;
-  padding: 5px 10px;
   transition: .5s;
   border-radius: 30px;
+  padding: 10px;
 }
 
-.editBtn {
-  width: 50px;
-  height: 30px;
+.editBtn img {
+  height: 16px;
+  transition: .3s;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: transparent;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   background-color: white;
   color: black;
-  padding: 5px 10px;
   transition: .5s;
   border-radius: 30px;
+  padding: 10px;
+}
+
+.deleteBtn img {
+  height: 16px;
+  transition: .3s;
 }
 
 .deleteBtn:hover {
-  width: 55px;
-  height: 35px;
+  padding: 13px;
   background-color: #ff4d4d;
 }
 
@@ -214,7 +230,7 @@ thead {
 }
 
 /*Small Screen Adjustments*/
-@media (max-width: 865px) {
+@media (max-width: 900px) {
   .main-container {
     flex-direction: column;
     margin: 20px;
@@ -235,17 +251,18 @@ thead {
 
 /* MODAL STYLING */
 .modal {
-  width: 400px;
+  width: 450px;
   height: 250px;
   background-color: #576490;
-  background: blur(50%);
   border: 1px solid black;
   border-radius: 15px;
   animation: slideIn 0.5s ease-out forwards;
+  overflow: hidden;
 }
 
-.modal h3 {
+.modal h2 {
   text-align: center;
+  color: black;
 }
 
 .modal-form {
@@ -255,17 +272,55 @@ thead {
 }
 
 .modal-input-container {
-
+  width: 100%;
+  height: 100%;
 }
 
 .modal-input-row {
-  
+  margin: 15px;
+}
+
+.modal-input-row input {
+  width: 40%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  color: white;
+  margin-left: 15px;
+  font-size: 20px;
+}
+
+.modal-input-row input::placeholder {
+  color: white;
+  font-size: 15px;
 }
 
 .modal-buttons {
   display: flex;
   justify-content: flex-end;
 }
+
+.modal-buttons button {
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 15px;
+  border: none;
+  height: 50px;
+  width: 75px;
+  background: linear-gradient(to right, #A3BCF9, #7796CB);
+  transition: .3s;
+  font-size: 17px;
+  margin-top: 20px;
+}
+
+.modal-buttons button:hover {
+  height: 55px;
+  width: 80px;
+  background: linear-gradient(to right, #BFD7FF, #95B2E1);
+}
+
 /* Define the animation */
 @keyframes slideIn {
   from {
