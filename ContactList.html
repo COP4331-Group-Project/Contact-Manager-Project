@@ -17,7 +17,7 @@
         </div>
         <form id="search" class="input-group">
           <div class="inputWrapper">
-            <label>Search </label>
+            <label>Search:  </label>
             <select>
               <option value="1">First Name</option>
               <option value="2">Last Name</option>
@@ -42,6 +42,7 @@
           </div>
         </form>
       </div>
+
       <div class="contact-table">
         <table>
           <thead>
@@ -50,7 +51,7 @@
               <th>Last Name</th>
               <th>Email</th>
               <th>Phone Number</th>
-              <th>Delete</th>
+              <th colspan="2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -59,9 +60,14 @@
               <td>DiPietrantonio</td>
               <td>V@gmail.com</td>
               <td>2223334444</td>
-              <td class="deleteCell">
-                <button class="deleteBtn">
-                  
+              <td>
+                <button class="deleteBtn" onclick="deleteRow(this)">
+                  Delete
+                </button>
+              </td>
+              <td>
+                <button class="editBtn" onClick="editRow(this)" data-firstname="Vincent" data-lastname="DiPietrantonio" data-email="V@gmail.com" data-phone="2223334444">
+                  Edit
                 </button>
               </td>
             </tr>
@@ -127,6 +133,18 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- Edit form initially hiddent-->
+        <div id="editForm" style="display: none;">
+          <h3>Edit Contact</h3>
+          <form id="editRowForm" onsubmit="updateRow(); return false;">
+            <input type="text" id="editFirstName" placeholder="First Name">
+            <input type="text" id="editLastName" placeholder="Last Name">
+            <input type="text" id="editEmail" placeholder="Email">
+            <input type="text" id="editPhone" placeholder="Phone Number">
+            <button type="submit">Save</button>
+          </form>
+        </div>
       </div>
     </div>
     <script src="ContactList.js"></script>
