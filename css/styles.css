@@ -134,10 +134,10 @@
 .register-btn:hover {
   background: #636acf;
 }
-
+/* 
 input:invalid {
   border-bottom: 1px solid red;
-}
+} */
 
 .checkbox {
   margin: 30px 10px 30px 0;
@@ -163,4 +163,10 @@ span {
 
 #register {
   left: 450px;
+}
+
+.errorMsg {
+  display: none;
+  margin-top: 15px;
+  color: red;
 }
