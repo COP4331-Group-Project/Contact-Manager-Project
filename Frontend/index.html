@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Manager Login</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="background">
+    <div class="formBox">
+      <div class="buttonBox">
+        <div id="btn"></div>
+        <button type="button" class="toggle" onclick="login()">Log In</button>
+        <button type="button" class="toggle" onclick="register()">Register</button>
+      </div>
+      <div class="title-logo"> 
+      <h3>Welcome to our Contact Manager!</h3>
+      </div>
+      <form id="login" class="input-group">
+        <input type="text" class="input-field-login" placeholder="Username" required>
+        <input type="password" class="input-field-login" placeholder="Password" required>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+      <form id="register" class="input-group" onsubmit="return validateRegistration('register')">
+        <input id="firstName" type="text" class="input-field-register" placeholder="First Name" required>
+        <input type="text" class="input-field-register" placeholder="Last Name" required>
+        <input type="text" class="input-field-register" placeholder="Username" required>
+        <input type="password" class="input-field-register" placeholder="Password" required>
+        <input type="checkbox" class="checkbox"><span>I agree to the terms and conditions</span>
+        <button type="submit" class="register-btn">Register</button>
+      </form>
+    </div>
+  </div>
+  <script src="./functions.js"></script>
+</body>
+</html>

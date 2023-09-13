@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.background {
+  height: 100%;
+  width: 100%;
+  background-color: #9599cc;
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+}
+
+.formBox {
+  width: 380px;
+  height: 480px;
+  position: relative;
+  margin: 6% auto;
+  background: #fff;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.title-logo {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.title-logo img {
+  width: 50px;
+  height: 50px; 
+}
+
+.title-logo h1 {
+  font-size: 24px;
+  margin-top: 10px;
+}
+
+.buttonBox {
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  box-shadow: 0 0 10px 2px #bab8b8;
+  border-radius: 30px;
+}
+
+.toggle {
+  padding: 10px 30px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+}
+
+#btn {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: #9599cc;
+  border-radius: 30px;
+  transition: .5s;
+}
+
+.input-group {
+  top: 180px;
+  position: absolute;
+  width: 280px;
+  transition: .5s;
+}
+
+.input-field-login {
+  width: 100%;
+  padding: 10px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: transparent;
+}
+
+.input-field-register {
+  width: 100%;
+  padding: 7px 0;
+  margin: 5px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #999;
+  outline: none;
+  background: transparent;
+}
+
+.login-btn {
+  top: 60px;
+  width: 85%;
+  padding: 10px 30px;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  background: #9599cc;
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  transition: background 0.3s;
+  color: 0.3s;
+}
+
+.login-btn:hover {
+  background: #636acf;
+}
+
+.register-btn {
+  width: 85%;
+  padding: 10px 30px;
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  background: #9599cc;
+  border: 0;
+  outline: none;
+  border-radius: 30px;
+  transition: background 0.3s;
+  color: 0.3s;
+}
+
+.register-btn:hover {
+  background: #636acf;
+}
+
+input:invalid {
+  border-bottom: 1px solid red;
+}
+
+.checkbox {
+  margin: 30px 10px 30px 0;
+}
+
+.error-message {
+  font-size: 5px;
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}
+
+span {
+  color: #777;
+  font-size: 12px;
+  bottom: 68px;
+  position: absolute;
+}
+
+#login {
+  left: 50px;
+}
+
+#register {
+  left: 450px;
+}
