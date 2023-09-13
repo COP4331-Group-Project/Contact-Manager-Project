@@ -17,72 +17,127 @@ function login() {
   z.style.left = "0";
 }
 
-var fieldsValidated = {
-  firstName: false,
-  lastName: false,
-  username: false,
-  password: false,
-};
-
-function validateRegistration(formType) {
-  var firstNameInput = document.getElementById("firstName");
-  var lastNameInput = document.getElementById("lastName");
-  var usernameInput = document.getElementById("username");
-  var passwordInput = document.getElementById("password");
-
-  // Validate first name
-  if (!fieldsValidated.firstName) {
-    fieldsValidated.firstName = true;
-    if (firstNameInput.value.trim() === "") {
-      firstNameInput.style.borderBottom = "1px solid red";
-      return false;
-    }
-  } else {
-    firstNameError.innerHTML = "";
+const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, passwordInput) =>
+{
+    // Reset error styles
     firstNameInput.style.borderBottom = "1px solid #999";
-  }
-
-  // Validate last name
-  if (!fieldsValidated.lastName) {
-    fieldsValidated.lastName = true;
-    if (lastNameInput.value.trim() === "") {
-      lastNameInput.style.borderBottom = "1px solid red";
-      return false;
-    }
-  } else {
-    lastNameError.innerHTML = "";
     lastNameInput.style.borderBottom = "1px solid #999";
-  }
-
-  // Validate username
-  if (!fieldsValidated.username) {
-    fieldsValidated.username = true;
-    if (usernameInput.value.length < 1) {
-      usernameInput.style.borderBottom = "1px solid red";
-      return false;
-    }
-  } else {
-    usernameError.innerHTML = "";
     usernameInput.style.borderBottom = "1px solid #999";
-  }
-
-  // Validate password
-  if (!fieldsValidated.password) {
-    fieldsValidated.password = true;
-    if (passwordInput.value.length < 5) {
-      passwordInput.style.borderBottom = "1px solid red";
-      return false;
-    }
-  } else {
-    passwordError.innerHTML = "";
     passwordInput.style.borderBottom = "1px solid #999";
-  }
+    const errorMsg = document.getElementById('errorMsg');
+    errorMsg.style.display = 'none';
 
-  return true;
+
+    // Validate first name
+    if (firstNameInput.value.trim() === "") {
+        firstNameInput.style.borderBottom = "1px solid red";
+        return false;
+    }
+
+    // Validate last name
+    if (lastNameInput.value.trim() === "") {
+        lastNameInput.style.borderBottom = "1px solid red";
+        return false;
+    }
+
+    // Validate username
+    if (usernameInput.value.length < 1) {
+        usernameInput.style.borderBottom = "1px solid red";
+        return false;
+    }
+
+    // Validate password
+    if (passwordInput.value.length < 5) {
+        passwordInput.style.borderBottom = "1px solid red";
+        return false;
+    }
+
+    return true;
 }
 
-function registerNewUser() {
-  firstName = document.getElementById('firstname');
+const registerNewUser = () => 
+{
+    // For error handling
+    const firstNameInput = document.getElementById('firstName');
+    const lastNameInput = document.getElementById('lastName');
+    const usernameInput = document.getElementById('userName');
+    const passwordInput = document.getElementById('password');
 
+    // Getting the users full name
+    const firstName = document.getElementById('firstName').value.trim(); 
+    const lastName = document.getElementById('lastName').value.trim();
+    // Getting the username/password
+    const username = document.getElementById('userName').value.trim();
+    const password = document.getElementById('password').value.trim();
+    
+    // Handles errors in the form 
+    if (!validateRegistrationForm(firstNameInput, lastNameInput, usernameInput, passwordInput))
+    {
+        const errorMsg = document.getElementById('errorMsg');
+        errorMsg.style.display = 'block';
+        return;
+    }
 
+    // Handles a valid form and sending to the database
+    let hashedPassword = md5(password);
+
+    let formData = 
+    {
+        FirstName: firstName,
+        LastName: lastName,
+        Login: username,
+        Password: hashedPassword,
+    }
+
+    let payload = JSON.stringify(formData);
+
+    const url = urlBase + '/Register.' + extension;
+    // const xhr = new XMLHttpRequest();
+    // xhr.open("POST", url, true);
+    // xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    // Async Arrow Function used to send data to the database
+    sendNewUserData(url, payload);
+
+}
+
+const sendNewUserData = async (url, data) => {
+    try 
+    {
+        const response = await fetch(url, {
+            method: "POST",
+            body: data,
+            headers: {
+                'Content-type': 'application/json',
+            },
+        });
+
+        // Response/errors
+        if (response.ok) 
+        {
+            const res = await response.json();
+            console.log(res);
+        }
+        else 
+        {
+            console.error("HTTP Error:", response.status);
+        }
+    }
+    catch (error) 
+    {
+        console.error('An error occurred:', error);
+    }
+    return;
+}
+
+const showErr = (inputId) => 
+{
+    const inputElement = document.getElementById(inputId);
+    inputElement.style.borderBottom = '1px solid red';
+}
+
+const clearErr = (inputId) =>
+{
+    const inputElement = document.getElementById(inputId);
+    inputElement.style.borderBottom = '1px solid red';
 }
