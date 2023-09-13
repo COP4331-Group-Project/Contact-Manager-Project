@@ -27,7 +27,6 @@ const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, 
     const errorMsg = document.getElementById('errorMsg');
     errorMsg.style.display = 'none';
 
-
     // Validate first name
     if (firstNameInput.value.trim() === "") {
         firstNameInput.style.borderBottom = "1px solid red";
@@ -57,7 +56,6 @@ const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, 
 
 function registerNewUser()
 {
-    console.log("ENTER FUNCT");
     // For error handling
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
@@ -70,7 +68,7 @@ function registerNewUser()
     // Getting the username/password
     const username = document.getElementById('userName').value.trim();
     const password = document.getElementById('password').value.trim();
-    console.log("HANDLING FORM ERR");
+
     // Handles errors in the form 
     if (!validateRegistrationForm(firstNameInput, lastNameInput, usernameInput, passwordInput))
     {
@@ -78,7 +76,7 @@ function registerNewUser()
         errorMsg.style.display = 'block';
         return;
     }
-    console.log("HASHING PASS AND GETTING DATA READY");
+
     // Handles a valid form and sending to the database
     let hashedPassword = md5(password);
 
@@ -92,52 +90,38 @@ function registerNewUser()
 
     let payload = JSON.stringify(formData);
 
-
     const url = urlBase + '/Register.' + extension;
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    console.log("ENTER TRY");
-    try {
-            console.log("Send payload");
-            xhr.send(payload);
-        }
-    catch (err)
-    {
-        console.log("FUCK");
-    }
-    console.log("SUCCESS");
-    return;
+    sendNewUserData(url, payload);
 }
 
-// const sendNewUserData = async (url, data) => {
-//     try 
-//     {
-//         const response = await fetch(url, {
-//             method: "POST",
-//             body: data,
-//             headers: {
-//                 'Content-type': 'application/json',
-//             },
-//         });
+const sendNewUserData = async (url, data) => {
+    try 
+    {
+        const response = await fetch(url, {
+            method: "POST",
+            body: data,
+            headers: {
+                'Content-type': 'application/json',
+            },
+        });
 
-//         // Response/errors
-//         if (response.ok) 
-//         {
-//             const res = await response.json();
-//             console.log(res);
-//         }
-//         else 
-//         {
-//             console.error("HTTP Error:", response.status);
-//         }
-//     }
-//     catch (error) 
-//     {
-//         console.error('An error occurred:', error);
-//     }
-//     return;
-// }
+        // Response/errors
+        if (response.ok) 
+        {
+            const res = await response.json();
+            console.log(res);
+        }
+        else 
+        {
+            console.error("HTTP Error:", response.status);
+        }
+    }
+    catch (error) 
+    {
+        console.error('An error occurred:', error);
+    }
+    return;
+}
 
 const showErr = (inputId) => 
 {
