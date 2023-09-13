@@ -5,16 +5,16 @@
 	$searchResults = "";
 	$searchCount = 0;
 
-	$conn = new mysqli("localhost", "root", "Cop4331Group23FTW", "COP4331"); 
+	$conn = new mysqli("localhost", "Admin", "Dev123", "COP4331"); 
 	if ($conn->connect_error) 
 	{
 		returnWithError( $conn->connect_error );
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name from Colors where Name like ? and UserID=?");
-		$colorName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("ss", $colorName, $inData["userId"]);
+		$stmt = $conn->prepare("SELECT Login FROM Users WHERE Login LIKE ? and ID=?");
+		$userName = "%" . $inData["Login"] . "%";
+		$stmt->bind_param("ss", $userName, $inData["ID"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -26,7 +26,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"';
+			$searchResults .= '"' . $row["Login"] . '"';
 		}
 		
 		if( $searchCount == 0 )
