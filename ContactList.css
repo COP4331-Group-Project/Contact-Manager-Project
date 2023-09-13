@@ -1,0 +1,332 @@
+body {
+  font: 18px/1.5 Arial, sans-serif;
+  padding: 20px;
+  margin: 0;
+  background-color: #D1D2F9;
+}
+
+.title {
+text-align: center;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  justify-content:space-between;
+}
+
+/* Forms Styling */
+.forms-wrapper {
+  width: 100%;
+  max-width: 280px;
+  height: 380px;
+  position: relative;
+  margin: 5% 10% 1% auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: #576490;
+}
+
+.button-box {
+  display: flex;
+  width: 220px;
+  margin: 35px auto;
+  position: relative;
+  box-shadow: 0 0 20px grey;
+  background-color: #D1D2F9;
+  border-radius: 30px;
+}
+
+.toggle-btn {
+  padding: 10px 30px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  position: relative;
+}
+
+#btn {
+  position: absolute;
+  width: 110px;
+  height: 100%;
+  background: linear-gradient(to right, #A3BCF9, #7796CB);
+  border-radius: 30px;
+  transition: .5s;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  width: 180px;
+  transition: .5s;
+}
+
+.input-field {
+  width: 100%;
+  padding: 5px;
+  margin: 7px 0;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid black;
+  background: transparent;
+  color: white;
+  outline: none;
+  font-size: 20px;
+}
+
+.input-field::placeholder {
+  color: white;
+}
+
+.formButton {
+  display: flex;
+}
+
+.submit-btn {
+  display: flex;
+  justify-content: center;
+  width: 45px;
+  padding: 10px 30px;
+  cursor: pointer;
+  margin: auto;
+  background: linear-gradient(to right, #A3BCF9, #7796CB);
+  border: 0;
+  border-radius: 30px;
+  color: black;
+  transition: .5s;
+}
+
+.submit-btn img {
+  height: 20px;
+  width: 20px;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(to right, #BFD7FF, #95B2E1);
+  width: 50%;
+}
+
+#search {
+  left: 50px;
+}
+#addContact {
+left: 450px;
+}
+
+/* TABLE STYLING */
+.contact-table {
+  display: flex;
+  justify-content: center;
+  max-width: 800px;
+  width: 100%;
+  max-height: 500px;
+  overflow: auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #000;
+  margin-right: auto;
+}
+
+.contact-table table {
+  width: 100%;
+  padding: 5px;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+}
+
+.contact-table th,
+.contact-table td {
+  padding: 7px;
+  border: 2px solid #000;
+  text-align: center;
+}
+
+.contact-table th {
+  background-color: #A3BCF9;
+  color: #000;
+}
+
+.contact-table td {
+  background-color:#7796CB ;
+  color: #000;
+}
+
+.contact-table th,
+.contact-table td:first-child {
+  border-left: none;
+}
+
+.contact-table th:last-child,
+.contact-table td:last-child {
+  border-right: none;
+}
+
+.editBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  transition: .5s;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.editBtn img {
+  height: 16px;
+  transition: .3s;
+}
+
+.deleteBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  transition: .5s;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.deleteBtn img {
+  height: 16px;
+  transition: .3s;
+}
+
+.deleteBtn:hover {
+  padding: 13px;
+  background-color: #ff4d4d;
+}
+
+/* Sroll Bar CSS */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+  background-color: #95B2E1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #7A97CC;
+}
+
+/*Small Screen Adjustments*/
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+    margin: 20px;
+  }
+  /* Form Styling */
+  .forms-wrapper {
+    margin: auto;
+  }
+  .button-box {
+    justify-content: center;
+    align-items: center;
+  }
+  .input-group {
+
+  }
+  
+}
+
+/* MODAL STYLING */
+.modal {
+  width: 450px;
+  height: 250px;
+  background-color: #576490;
+  border: 1px solid black;
+  border-radius: 15px;
+  animation: slideIn 0.5s ease-out forwards;
+  overflow: hidden;
+}
+
+.modal h2 {
+  text-align: center;
+  color: black;
+}
+
+.modal-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-input-container {
+  width: 100%;
+  height: 100%;
+}
+
+.modal-input-row {
+  margin: 15px;
+}
+
+.modal-input-row input {
+  width: 40%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 1px solid black;
+  color: white;
+  margin-left: 15px;
+  font-size: 20px;
+}
+
+.modal-input-row input::placeholder {
+  color: white;
+  font-size: 15px;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-buttons button {
+  padding: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+  border-radius: 15px;
+  border: none;
+  height: 50px;
+  width: 75px;
+  background: linear-gradient(to right, #A3BCF9, #7796CB);
+  transition: .3s;
+  font-size: 17px;
+  margin-top: 20px;
+}
+
+.modal-buttons button:hover {
+  height: 55px;
+  width: 80px;
+  background: linear-gradient(to right, #BFD7FF, #95B2E1);
+}
+
+/* Define the animation */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
