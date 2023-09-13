@@ -1,3 +1,6 @@
+const urlBase = "http://cop4331-group23.com/LAMPAPI";
+const extension = "php";
+
 var x = document.getElementById("login");
 var y = document.getElementById("register");
 var z = document.getElementById("btn");
@@ -78,11 +81,8 @@ function validateRegistration(formType) {
   return true;
 }
 
-// Register Form
-document.getElementById('register').addEventListener('submit', (event) => {
-  event.preventDefault();
+function registerNewUser() {
+  firstName = document.getElementById('firstname');
 
-  var firstName = document.getElementById('firstName').value;
 
-  console.log('firstname: ' + firstName);
-})
+}
