@@ -19,10 +19,11 @@
             </div>
 
             <form id="login" class="input-group">
-                <input type="text" class="input-field-login" placeholder="Username" required>
-                <input type="password" class="input-field-login" placeholder="Password" required>
-                <button type="submit" class="login-btn">Login</button>
+                <input id="username" type="text" class="input-field-login" placeholder="Username" required>
+                <input id="password" type="password" class="input-field-login" placeholder="Password" required>
+                <button type="submit" class="login-btn" onclick="doLogin();">Login</button>
             </form>
+
 
             <form id="register" class="input-group">
                 <input id="firstName" type="text" class="input-field-register" placeholder="First Name">
