@@ -6,15 +6,15 @@ var y = document.getElementById("register");
 var z = document.getElementById("btn");
 
 function register() {
-  x.style.left = "-400px";
-  y.style.left = "50px";
-  z.style.left = "110px";
+    x.style.left = "-400px";
+    y.style.left = "50px";
+    z.style.left = "110px";
 }
 
 function login() {
-  x.style.left = "50px";
-  y.style.left = "450px";
-  z.style.left = "0";
+    x.style.left = "50px";
+    y.style.left = "450px";
+    z.style.left = "0";
 }
 
 const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, passwordInput) =>
@@ -54,64 +54,9 @@ const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, 
     return true;
 }
 
-let userId = 0;
-let firstName = "";
-let lastName = "";
-
-function doLogin()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	
-	let login = document.getElementById("username").value;
-	let password = document.getElementById("password").value;
-	var hash = md5( password );
-	
-	document.getElementById("loginResult").innerHTML = "";
-
-	let tmp = {login:login,password:hash};
-	let jsonPayload = JSON.stringify( tmp );
-	
-	let url = urlBase + '/Login.' + extension;
-
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function() 
-		{
-			if (this.readyState == 4 && this.status == 200) 
-			{
-				let jsonObject = JSON.parse( xhr.responseText );
-				userId = jsonObject.id;
-		
-				if( userId < 1 )
-				{		
-					document.getElementById("loginResult").innerHTML = "Username or Password incorrect";
-					return;
-				}
-		
-				firstName = jsonObject.firstName;
-				lastName = jsonObject.lastName;
-
-				saveCookie();
-	
-				window.location.href = "ContactList.html";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-		document.getElementById("loginResult").innerHTML = err.message;
-	}
-
-}
-
 function registerNewUser()
 {
+    console.log("ENTER FUNCT");
     // For error handling
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
@@ -124,7 +69,7 @@ function registerNewUser()
     // Getting the username/password
     const username = document.getElementById('userName').value.trim();
     const password = document.getElementById('password').value.trim();
-
+    console.log("HANDLING FORM ERR");
     // Handles errors in the form 
     if (!validateRegistrationForm(firstNameInput, lastNameInput, usernameInput, passwordInput))
     {
@@ -132,7 +77,7 @@ function registerNewUser()
         errorMsg.style.display = 'block';
         return;
     }
-
+    console.log("HASHING PASS AND GETTING DATA READY");
     // Handles a valid form and sending to the database
     let hashedPassword = md5(password);
 
@@ -146,38 +91,52 @@ function registerNewUser()
 
     let payload = JSON.stringify(formData);
 
+
     const url = urlBase + '/Register.' + extension;
-    sendNewUserData(url, payload);
-}
-
-const sendNewUserData = async (url, data) => {
-    try 
-    {
-        const response = await fetch(url, {
-            method: "POST",
-            body: data,
-            headers: {
-                'Content-type': 'application/json',
-            },
-        });
-
-        // Response/errors
-        if (response.ok) 
-        {
-            const res = await response.json();
-            console.log(res);
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    console.log("ENTER TRY");
+    try {
+            console.log("Send payload");
+            xhr.send(payload);
         }
-        else 
-        {
-            console.error("HTTP Error:", response.status);
-        }
-    }
-    catch (error) 
+    catch (err)
     {
-        console.error('An error occurred:', error);
+        console.log("FUCK");
     }
+    console.log("SUCCESS");
     return;
 }
+
+// const sendNewUserData = async (url, data) => {
+//     try 
+//     {
+//         const response = await fetch(url, {
+//             method: "POST",
+//             body: data,
+//             headers: {
+//                 'Content-type': 'application/json',
+//             },
+//         });
+
+//         // Response/errors
+//         if (response.ok) 
+//         {
+//             const res = await response.json();
+//             console.log(res);
+//         }
+//         else 
+//         {
+//             console.error("HTTP Error:", response.status);
+//         }
+//     }
+//     catch (error) 
+//     {
+//         console.error('An error occurred:', error);
+//     }
+//     return;
+// }
 
 const showErr = (inputId) => 
 {
@@ -189,55 +148,4 @@ const clearErr = (inputId) =>
 {
     const inputElement = document.getElementById(inputId);
     inputElement.style.borderBottom = '1px solid red';
-}
-
-function saveCookie()
-{
-	let minutes = 20;
-	let date = new Date();
-	date.setTime(date.getTime()+(minutes*60*1000));	
-	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
-}
-
-function readCookie()
-{
-	userId = -1;
-	let data = document.cookie;
-	let splits = data.split(",");
-	for(var i = 0; i < splits.length; i++) 
-	{
-		let thisOne = splits[i].trim();
-		let tokens = thisOne.split("=");
-		if( tokens[0] == "firstName" )
-		{
-			firstName = tokens[1];
-		}
-		else if( tokens[0] == "lastName" )
-		{
-			lastName = tokens[1];
-		}
-		else if( tokens[0] == "userId" )
-		{
-			userId = parseInt( tokens[1].trim() );
-		}
-	}
-	
-	if( userId < 0 )
-	{
-		window.location.href = "index.html";
-	}
-	else
-	{
-		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
-	}
-}
-
-
-function doLogout()
-{
-	userId = 0;
-	firstName = "";
-	lastName = "";
-	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-	window.location.href = "index.html";
 }
