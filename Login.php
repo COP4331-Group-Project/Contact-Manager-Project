@@ -1,6 +1,5 @@
-
 <?php
-
+	session_start();
 	$inData = getRequestInfo();
 	
 	$id = 0;
@@ -20,9 +19,11 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 
-		if( $row = $result->fetch_assoc()  )
+		if( $row = $result->fetch_assoc() )
 		{
-			returnWithInfo( $row['firstName'], $row['lastName'], $row['ID'] );
+            		$id = $row['ID'];
+            		$_SESSION["UserID"] = $id; // Assign the ID to the session variable
+           		returnWithInfo( $row['firstName'], $row['lastName'], $id );
 		}
 		else
 		{
@@ -55,5 +56,4 @@
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
 ?>
