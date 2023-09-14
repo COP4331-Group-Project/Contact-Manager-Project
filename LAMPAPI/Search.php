@@ -12,9 +12,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT Login FROM Users WHERE Login LIKE ? and ID=?");
-		$userName = "%" . $inData["Login"] . "%";
-		$stmt->bind_param("ss", $userName, $inData["ID"]);
+		$stmt = $conn->prepare("SELECT FirstName FROM Contacts WHERE FirstName LIKE ? and UserID=?");
+		$firstName = "%" . $inData["FirstName"] . "%";
+		$stmt->bind_param("ss", $firstName, $inData["UserID"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -26,7 +26,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["Login"] . '"';
+			$searchResults .= '"' . $row["FirstName"] . '"';
 		}
 		
 		if( $searchCount == 0 )
