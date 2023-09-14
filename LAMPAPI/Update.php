@@ -1,7 +1,10 @@
 <?php
 	$inData = getRequestInfo();
-	$firstName = $inData["FirstName"];
     $id = $inData["ID"];
+	$firstName = $inData["FirstName"];
+    $lastName = $inData["LastName"];
+    $phone = $inData["Phone"];
+    $email = $inData["Email"];
 
 	$conn = new mysqli("localhost", "Admin", "Dev123", "COP4331"); 
 
@@ -11,11 +14,31 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("UPDATE Contacts SET FirstName=? WHERE ID=?");
-		$stmt->bind_param("ss", $firstName, $id);
+        if (!empty($firstName)) {
+		    $stmt = $conn->prepare("UPDATE Contacts SET FirstName=? WHERE ID=?");
+		    $stmt->bind_param("ss", $firstName, $id);
+            $stmt->execute();
+		    $stmt->close();
+        }
+        if (!empty($lastName)) {
+		    $stmt = $conn->prepare("UPDATE Contacts SET LastName=? WHERE ID=?");
+		    $stmt->bind_param("ss", $lastName, $id);
+            $stmt->execute();
+		    $stmt->close();
+        }
+        if (!empty($phone)) {
+		    $stmt = $conn->prepare("UPDATE Contacts SET Phone=? WHERE ID=?");
+		    $stmt->bind_param("ss", $phone, $id);
+            $stmt->execute();
+		    $stmt->close();
+        }
+        if (!empty($email)) {
+		    $stmt = $conn->prepare("UPDATE Contacts SET Email=? WHERE ID=?");
+		    $stmt->bind_param("ss", $email, $id);
+            $stmt->execute();
+		    $stmt->close();
+        }
 
-		$stmt->execute();
-		$stmt->close();
 		$conn->close();
 		returnWithError("");
 	}
