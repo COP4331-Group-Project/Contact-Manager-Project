@@ -2,7 +2,8 @@ body {
   font: 18px/1.5 Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-image: url('./img/backgroundimg.jpg');
+  /* background-image: url('./images/backgroundimg.jpg'); FOR SERVER */
+  background-image: url('./img/backgroundimg.jpg'); 
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -34,18 +35,6 @@ body {
   transition: .3s;
 }
 
-@keyframes borderChange {
-  0% {
-    border-bottom-color: hsl(200, 100%, 56%); /* Start with blue */
-  }
-  50% {
-    border-bottom-color: hsl(270, 100%, 76%); /* Transition to purple */
-  }
-  100% {
-    border-bottom-color: hsl(200, 100%, 56%); /* End with blue */
-  }
-}
-
 .navbar button::before {
   content: '';
   position: absolute;
@@ -53,7 +42,6 @@ body {
   left: 0;
   width: 0;
   height: 1px;
-  /* background: #fff; */
   transition: .5s;
   animation: borderChange 2s infinite; /* Apply the borderChange animation */
   border-bottom: 3px solid hsl(200, 100%, 56%);
@@ -76,7 +64,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin: 50px;
+  margin: 30px;
 }
 
 .tableContainer h2 {
@@ -87,23 +75,20 @@ body {
 
 table {
   width: 80%;
+  max-height: 500px;
   border-collapse: collapse;
   margin-bottom: 20px;
+  background-color: rgba(28,12,51,255);;
 }
 
-th {
-  background-color: #333;
+th, td {
+  background-color: rgba(28,12,51,255);
   color: #fff;
-  font-weight: bold;
   text-align: center;
   padding: 10px;
-  border: 1px solid #555;
-}
-
-td {
-  padding: 8px;
-  border: 1px solid #ddd;
-  color: white;
+  border: 2px solid transparent; /* Start with a transparent border */
+  animation: neonBorderTable 10s infinite; /* Apply the custom animation */
+  transition: border-color 10s; /* Add a transition for smooth change */
 }
 
 td:last-child {
@@ -119,12 +104,10 @@ td:last-child button {
 .modal {
   width: 450px;
   height: 250px;
-  background-color: black;
   background: transparent;
   backdrop-filter: blur(10px);
   border: 2px solid transparent;
   border-radius: 15px;
-  animation: slideIn 0.5s ease-out forwards;
   overflow: hidden;
   animation: neonBorder 5s linear infinite alternate;
 }
@@ -133,7 +116,7 @@ td:last-child button {
   text-align: center;
   color: #fff;
   border-bottom: 1px solid #fff;
-  animation: borderChange 2s infinite; /* Apply the borderChange animation */
+  animation: borderChange 2s infinite;
 }
 
 .modal-form {
@@ -170,9 +153,85 @@ td:last-child button {
 }
 
 .modal-input-row input:hover {
-  border-bottom: 2PX solid transparent;
+  border-bottom: 3px solid transparent;
   border-bottom-color: hsl(200, 100%, 56%);
   animation: neonBorderBottom 1s infinite;
+}
+
+.modal-input-row input:focus {
+  border-bottom: 3px solid transparent;
+  animation: neonBorderBottom 1s infinite;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.modal-buttons button {
+  color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  background: transparent;
+  border: none;
+  transition: .5s;
+  font-size: 17px;
+  margin-top: 20px;
+  position: relative;
+}
+
+.modal-buttons button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  transition: .5s;
+  animation: borderChange 2s infinite;
+  border-bottom: 3px solid hsl(200, 100%, 56%);
+}
+
+.modal-buttons button:hover::before {
+  width: 100%;
+}
+
+/* FOR TABBING */
+.modal-buttons button:focus {
+  animation: borderChange 2s infinite;
+  outline: none;
+}
+.modal-buttons button:focus::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  transition: .5s;
+  animation: borderChange 2s infinite;
+}
+.modal-buttons button:focus::before {
+  width: 100%;
+}
+
+/* OVERLAY */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Define the animation */
+@keyframes neonBorder {
+  0% {
+    border-color: hsl(200, 100%, 56%); /* Start with a neon color */
+  }
+  50% {
+    border-color: hsl(270, 100%, 76%); /* Transition to another color */
+  }
+  100% {
+    border-color: hsl(200, 100%, 56%); /* End with the neon color */
+  }
 }
 
 /* Define the animation */
@@ -188,48 +247,19 @@ td:last-child button {
   }
 }
 
-.modal-buttons {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.modal-buttons button {
-  padding: 10px;
-  cursor: pointer;
-  margin-right: 15px;
-  border-radius: 10px;
-  border: none;
-  height: 50px;
-  width: 75px;
-  background: linear-gradient(to right, #A3BCF9, #7796CB);
-  transition: .3s;
-  font-size: 17px;
-  margin-top: 20px;
-}
-
-.modal-buttons button:hover {
-  height: 55px;
-  width: 80px;
-  background: linear-gradient(to right, #BFD7FF, #95B2E1);
-}
-
-/* Define the animation */
-@keyframes slideIn {
-  from {
-    opacity: 0;
+@keyframes borderChange {
+  0% {
+    border-bottom-color: hsl(200, 100%, 56%); /* Start with blue */
   }
-  to {
-    opacity: 1;
+  50% {
+    border-bottom-color: hsl(270, 100%, 76%); /* Transition to purple */
+  }
+  100% {
+    border-bottom-color: hsl(200, 100%, 56%); /* End with blue */
   }
 }
 
-/* OVERLAY */
-dialog::backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-/* Define the animation */
-@keyframes neonBorder {
+@keyframes neonBorderTable {
   0% {
     border-color: hsl(200, 100%, 56%); /* Start with a neon color */
   }
