@@ -1,268 +1,123 @@
 body {
   font: 18px/1.5 Arial, sans-serif;
-  padding: 20px;
   margin: 0;
-  background-color: #D1D2F9;
+  padding: 0;
+  /* background-image: url('./images/backgroundimg.jpg'); FOR SERVER */
+  background-image: url('./img/backgroundimg.jpg'); 
+  /* background-image: url('../../images/backgroundimg.jpg'); */
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
-.title {
-text-align: center;
-}
-
-.main-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center; 
-  justify-content:space-between;
-}
-
-/* Forms Styling */
-.forms-wrapper {
+/* NAV BAR */
+.header {
   width: 100%;
-  max-width: 280px;
-  height: 380px;
-  position: relative;
-  margin: 5% 10% 1% auto;
-  border: 1px solid black;
-  border-radius: 10px;
-  overflow: hidden;
-  background-color: #576490;
-}
-
-.button-box {
+  backdrop-filter: blur(10px);
   display: flex;
-  width: 220px;
-  margin: 35px auto;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  margin-right: 75px;
+}
+
+.navbar button {
   position: relative;
-  box-shadow: 0 0 20px grey;
-  background-color: #D1D2F9;
-  border-radius: 30px;
-}
-
-.toggle-btn {
-  padding: 10px 30px;
-  cursor: pointer;
-  background-color: transparent;
-  border: 0;
-  outline: none;
-  position: relative;
-}
-
-#btn {
-  position: absolute;
-  width: 110px;
-  height: 100%;
-  background: linear-gradient(to right, #A3BCF9, #7796CB);
-  border-radius: 30px;
-  transition: .5s;
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  width: 180px;
-  transition: .5s;
-}
-
-.input-field {
-  width: 100%;
-  padding: 5px;
-  margin: 7px 0;
-  border-left: 0;
-  border-top: 0;
-  border-right: 0;
-  border-bottom: 1px solid black;
+  font-size: 25px;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  margin-left: 40px;
   background: transparent;
-  color: white;
-  outline: none;
-  font-size: 20px;
-}
-
-.input-field::placeholder {
-  color: white;
-}
-
-.formButton {
-  display: flex;
-}
-
-.submit-btn {
-  display: flex;
-  justify-content: center;
-  width: 45px;
-  padding: 10px 30px;
   cursor: pointer;
-  margin: auto;
-  background: linear-gradient(to right, #A3BCF9, #7796CB);
-  border: 0;
-  border-radius: 30px;
-  color: black;
+  transition: .3s;
+}
+
+.navbar button::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 0;
+  height: 1px;
   transition: .5s;
+  animation: borderChange 2s infinite; /* Apply the borderChange animation */
+  border-bottom: 3px solid hsl(200, 100%, 56%);
 }
 
-.submit-btn img {
-  height: 20px;
-  width: 20px;
+.navbar button:hover::before {
+  width: 100%;
 }
 
-.submit-btn:hover {
-  background: linear-gradient(to right, #BFD7FF, #95B2E1);
-  width: 50%;
-}
-
-#search {
-  left: 50px;
-}
-#addContact {
-left: 450px;
+.header h2 {
+  margin-left: 150px;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+  animation: neonBorderBottom 10s infinite;
 }
 
 /* TABLE STYLING */
-.contact-table {
+.tableContainer {
   display: flex;
   justify-content: center;
-  max-width: 800px;
-  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  margin: 30px;
+}
+
+.tableContainer h2 {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+  animation: neonBorderBottom 10s infinite;
+}
+
+table {
+  width: 80%;
   max-height: 500px;
-  overflow: auto;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #000;
-  margin-right: auto;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: rgba(28,12,51,255);;
 }
 
-.contact-table table {
-  width: 100%;
-  padding: 5px;
-}
-
-thead {
-  position: sticky;
-  top: 0;
-}
-
-.contact-table th,
-.contact-table td {
-  padding: 7px;
-  border: 2px solid #000;
+th, td {
+  background-color: rgba(28,12,51,255);
+  color: #fff;
   text-align: center;
-}
-
-.contact-table th {
-  background-color: #A3BCF9;
-  color: #000;
-}
-
-.contact-table td {
-  background-color:#7796CB ;
-  color: #000;
-}
-
-.contact-table th,
-.contact-table td:first-child {
-  border-left: none;
-}
-
-.contact-table th:last-child,
-.contact-table td:last-child {
-  border-right: none;
-}
-
-.editBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  transition: .5s;
-  border-radius: 30px;
   padding: 10px;
+  border-top: 2px solid transparent; /* Start with a transparent border */
+  animation: neonBorderTable 10s infinite; /* Apply the custom animation */
+  transition: border-color 10s; /* Add a transition for smooth change */
 }
 
-.editBtn img {
-  height: 16px;
-  transition: .3s;
+td:last-child {
+  text-align: center;
+  vertical-align: middle;
 }
 
-.deleteBtn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  transition: .5s;
-  border-radius: 30px;
-  padding: 10px;
-}
-
-.deleteBtn img {
-  height: 16px;
-  transition: .3s;
-}
-
-.deleteBtn:hover {
-  padding: 13px;
-  background-color: #ff4d4d;
-}
-
-/* Sroll Bar CSS */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: transparent;
-  background-color: #95B2E1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #7A97CC;
-}
-
-/*Small Screen Adjustments*/
-@media (max-width: 900px) {
-  .main-container {
-    flex-direction: column;
-    margin: 20px;
-  }
-  /* Form Styling */
-  .forms-wrapper {
-    margin: auto;
-  }
-  .button-box {
-    justify-content: center;
-    align-items: center;
-  }
-  .input-group {
-
-  }
-  
+td:last-child button {
+  margin: 5px;
 }
 
 /* MODAL STYLING */
 .modal {
   width: 450px;
   height: 250px;
-  background-color: #576490;
-  border: 1px solid black;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
   border-radius: 15px;
-  animation: slideIn 0.5s ease-out forwards;
   overflow: hidden;
+  animation: neonBorder 10s linear infinite alternate;
 }
 
 .modal h2 {
   text-align: center;
-  color: black;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  animation: borderChange 10s infinite;
 }
 
 .modal-form {
@@ -281,14 +136,16 @@ thead {
 }
 
 .modal-input-row input {
-  width: 40%;
+  width: 45%;
+  height: 30px;
   background: transparent;
   border: none;
   outline: none;
-  border-bottom: 1px solid black;
-  color: white;
-  margin-left: 15px;
-  font-size: 20px;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+  margin-left: 10px;
+  font-size: 17px;
+  border-radius: 5px;
 }
 
 .modal-input-row input::placeholder {
@@ -296,37 +153,121 @@ thead {
   font-size: 15px;
 }
 
+.modal-input-row input:hover {
+  border-bottom: 3px solid transparent;
+  border-bottom-color: hsl(200, 100%, 56%);
+  animation: neonBorderBottom 10s infinite;
+}
+
+.modal-input-row input:focus {
+  border-bottom: 3px solid transparent;
+  animation: neonBorderBottom 10s infinite;
+}
+
 .modal-buttons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-evenly;
 }
 
 .modal-buttons button {
-  padding: 10px;
+  color: #fff;
+  padding: 5px;
   cursor: pointer;
-  margin-right: 10px;
-  border-radius: 15px;
+  margin-right: 15px;
+  background: transparent;
   border: none;
-  height: 50px;
-  width: 75px;
-  background: linear-gradient(to right, #A3BCF9, #7796CB);
-  transition: .3s;
+  transition: .5s;
   font-size: 17px;
   margin-top: 20px;
+  position: relative;
 }
 
-.modal-buttons button:hover {
-  height: 55px;
-  width: 80px;
-  background: linear-gradient(to right, #BFD7FF, #95B2E1);
+.modal-buttons button::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  transition: .5s;
+  animation: borderChange 2s infinite;
+  border-bottom: 3px solid hsl(200, 100%, 56%);
+}
+
+.modal-buttons button:hover::before {
+  width: 100%;
+}
+
+/* FOR TABBING */
+.modal-buttons button:focus {
+  animation: borderChange 2s infinite;
+  outline: none;
+}
+.modal-buttons button:focus::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  transition: .5s;
+  animation: borderChange 2s infinite;
+}
+.modal-buttons button:focus::before {
+  width: 100%;
+}
+
+/* OVERLAY */
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* Define the animation */
-@keyframes slideIn {
-  from {
-    opacity: 0;
+@keyframes neonBorder {
+  0% {
+    border-color: hsl(200, 100%, 56%); /* Start with a neon color */
   }
-  to {
-    opacity: 1;
+  50% {
+    border-color: hsl(270, 100%, 76%); /* Transition to another color */
+  }
+  100% {
+    border-color: hsl(200, 100%, 56%); /* End with the neon color */
+  }
+}
+
+/* Define the animation */
+@keyframes neonBorderBottom {
+  0% {
+    border-bottom-color: hsl(200, 100%, 56%); /* Start with a neon color */
+  }
+  50% {
+    border-bottom-color: hsl(270, 100%, 76%); /* Transition to another color */
+  }
+  100% {
+    border-bottom-color: hsl(200, 100%, 56%); /* End with the neon color */
+  }
+}
+
+@keyframes borderChange {
+  0% {
+    border-bottom-color: hsl(200, 100%, 56%); /* Start with blue */
+  }
+  50% {
+    border-bottom-color: hsl(270, 100%, 76%); /* Transition to purple */
+  }
+  100% {
+    border-bottom-color: hsl(200, 100%, 56%); /* End with blue */
+  }
+}
+
+@keyframes neonBorderTable {
+  0% {
+    border-color: hsl(200, 100%, 56%); /* Start with a neon color */
+  }
+  50% {
+    border-color: hsl(270, 100%, 76%); /* Transition to another color */
+  }
+  100% {
+    border-color: hsl(200, 100%, 56%); /* End with the neon color */
   }
 }

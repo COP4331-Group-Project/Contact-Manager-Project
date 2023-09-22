@@ -2,104 +2,164 @@
 <html>
   <head>
     <title>ContactList</title>
-    <link rel="stylesheet" href="css/ContactList.css">
+    <link rel="stylesheet" href="ContactList.css">
   </head>
   <body>
-    <div class="title">
-      <h1>Contact List</h1>
+    <header class="header">
+      <h2>RETRO CONTACTS</h2>
+      <!-- NAV BAR -->
+      <nav class="navbar">
+        <button>HOME</button>
+        <button>ABOUT</button>
+        <button onclick="addContact()">ADD CONTACT</button>
+        <button>LOGOUT</button>
+      </nav>
+    </header>
+    
+    <!-- TABLE -->
+    <div class="tableContainer">
+      <h2>Available Contacts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th colspan="2">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Vincent</td>
+            <td>DiPietrantonio</td>
+            <td>V@gmail.com</td>
+            <td>2223334444</td>
+            <td>
+              <button 
+                id="deleteButton" 
+                class="deleteBtn" 
+                onclick="deleteRow(this)"
+              >
+                Remove Icon
+              </button>
+            </td>
+            <td>
+              <button  
+                id="editButton" 
+                class="editBtn" 
+                onclick="editRow(this)" 
+                data-firstname="Vincent" 
+                data-lastname="DiPietrantonio" 
+                data-email="V@gmail.com" 
+                data-phone="2223334444"
+                data-modal-id="editModal"
+              >
+                Edit Icon
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Vincent</td>
+            <td>DiPietrantonio</td>
+            <td>V@gmail.com</td>
+            <td>2223334444</td>
+            <td>
+              <button 
+                id="deleteButton" 
+                class="deleteBtn" 
+                onclick="deleteRow(this)"
+              >
+                Remove Icon
+              </button>
+            </td>
+            <td>
+              <button  
+                id="editButton" 
+                class="editBtn" 
+                onclick="editRow(this)" 
+                data-firstname="Vincent" 
+                data-lastname="DiPietrantonio" 
+                data-email="V@gmail.com" 
+                data-phone="2223334444"
+                data-modal-id="editModal"
+              >
+                Edit Icon
+              </button>
+            </td>
+          </tr><tr>
+            <td>Vincent</td>
+            <td>DiPietrantonio</td>
+            <td>V@gmail.com</td>
+            <td>2223334444</td>
+            <td>
+              <button 
+                id="deleteButton" 
+                class="deleteBtn" 
+                onclick="deleteRow(this)"
+              >
+                Remove Icon
+              </button>
+            </td>
+            <td>
+              <button  
+                id="editButton" 
+                class="editBtn" 
+                onclick="editRow(this)" 
+                data-firstname="Vincent" 
+                data-lastname="DiPietrantonio" 
+                data-email="V@gmail.com" 
+                data-phone="2223334444"
+                data-modal-id="editModal"
+              >
+                Edit Icon
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="main-container">
-      <div class="forms-wrapper">
-        <div class="button-box">
-          <div id="btn"></div>
-          <button type="button" class="toggle-btn" onclick="search()">Search</button>
-          <button type="button" class="toggle-btn" onclick="addContact()">Add Contact</button>
+
+    <!-- ADD CONTACT MODAL  -->
+    <dialog id="addContactModal" class="modal">
+      <h2>Add Contact</h2>
+      <form class="modal-form" id="addContactForm">
+        <div class="modal-input-container">
+          <div class="modal-input-row">
+            <input type="text" id="newFirstName" placeholder="First Name">
+            <input type="text" id="newLastName" placeholder="Last Name">
+          </div>
+          <div class="modal-input-row">
+            <input type="text" id="newEmail" placeholder="Email">
+            <input type="text" id="newPhoneNum" placeholder="Phone Number">
+          </div>
+          <div class="modal-buttons">
+            <button type="button" onclick="closeModal('addContactModal')">Cancel</button>
+            <button type="submit">Add Contact</button>
+          </div>
         </div>
-        <form id="search" class="input-group">
-          <div class="inputWrapper">
-            <label>Search:  </label>
-            <select>
-              <option value="1">First Name</option>
-              <option value="2">Last Name</option>
-              <option value="3">Email</option>
-              <option value="4">Phone Number</option>
-            </select>
-            <input type="text" class="input-field" placeholder="Contact">
+      </form>
+    </dialog>
+    <!-- Edit form initially hidden-->
+    <dialog id="editModal" class="modal">
+      <h2>Edit Contact</h2>
+      <form class="modal-form" id="editRowForm" onsubmit="updateRow(); return false;">
+        <div class="modal-input-container">
+          <div class="modal-input-row">
+            <input type="text" id="editFirstName" placeholder="First Name">
+            <input type="text" id="editLastName" placeholder="Last Name">
           </div>
-          <div class="formButton">
-            <button type="submit" class="submit-btn">
-              <img src="images/search.512x512.png">
-            </button>
+          <div class="modal-input-row">
+            <input type="text" id="editEmail" placeholder="Email">
+            <input type="text" id="editPhone" placeholder="Phone Number">
           </div>
-        </form>
-        <form id="addContact" class="input-group">
-          <div class="inputWrapper">
-            <input type="text" class="input-field" placeholder="First name">
-            <input type="text" class="input-field" placeholder="Last name">
-            <input type="email" class="input-field" placeholder="Email">
-            <input type="number" class="input-field" placeholder="Phone Number">
+          <div class="modal-buttons">
+            <button type="button" onclick="closeModal('editModal')">Cancel</button>
+            <button type="submit">Confirm</button>
           </div>
-          <div class="formButton">
-            <button type="submit" class="submit-btn">
-              <img src="images/user-plus.512x409.png">
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <div class="contact-table">
-        <table>
-          <thead>
-            <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Email</th>
-              <th>Phone Number</th>
-              <th colspan="2">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Vincent</td>
-              <td>DiPietrantonio</td>
-              <td>V@gmail.com</td>
-              <td>2223334444</td>
-              <td>
-                <button id="deleteButton" class="deleteBtn" onclick="deleteRow(this)">
-                  <img src="images/remove-user.512x409.png">
-                </button>
-              </td>
-              <td>
-                <button id="editButton" class="editBtn" onClick="editRow(this)" data-firstname="Vincent" data-lastname="DiPietrantonio" data-email="V@gmail.com" data-phone="2223334444">
-                  <img src="images/user-edit.512x409.png">
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- Edit form initially hidden-->
-        <dialog id="editForm" class="modal">
-          <h2>Edit Contact</h2>
-          <form class="modal-form" id="editRowForm" onsubmit="updateRow(); return false;">
-            <div class="modal-input-container">
-              <div class="modal-input-row">
-                <input type="text" id="editFirstName" placeholder="First Name">
-                <input type="text" id="editLastName" placeholder="Last Name">
-              </div>
-              <div class="modal-input-row">
-                <input type="text" id="editEmail" placeholder="Email">
-                <input type="text" id="editPhone" placeholder="Phone Number">
-              </div>
-              <div class="modal-buttons">
-                <button type="button" onclick="closeModal()">Cancel</button>
-                <button type="submit">Confirm</button>
-              </div>
-            </div>
-          </form>
-        </dialog>
-      </div>
-    </div>
-    <script src="js/ContactList.js"></script>
+        </div>
+      </form>
+    </dialog>
+    <script src="ContactList.js"></script>
   </body>
 </html>
