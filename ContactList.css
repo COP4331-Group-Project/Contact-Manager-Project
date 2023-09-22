@@ -4,7 +4,7 @@ body {
   padding: 0;
   /* background-image: url('./images/backgroundimg.jpg'); FOR SERVER */
   background-image: url('./img/backgroundimg.jpg'); 
-  background-image: url('../../images/backgroundimg.jpg');
+  /* background-image: url('../../images/backgroundimg.jpg'); */
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -53,10 +53,10 @@ body {
 }
 
 .header h2 {
-  margin-left: 100px;
+  margin-left: 150px;
   color: #fff;
   border-bottom: 2px solid #fff;
-  animation: neonBorderBottom 1s infinite;
+  animation: neonBorderBottom 10s infinite;
 }
 
 /* TABLE STYLING */
@@ -71,7 +71,7 @@ body {
 .tableContainer h2 {
   color: #fff;
   border-bottom: 2px solid #fff;
-  animation: neonBorderBottom 1s infinite;
+  animation: neonBorderBottom 10s infinite;
 }
 
 table {
@@ -87,7 +87,7 @@ th, td {
   color: #fff;
   text-align: center;
   padding: 10px;
-  border: 2px solid transparent; /* Start with a transparent border */
+  border-top: 2px solid transparent; /* Start with a transparent border */
   animation: neonBorderTable 10s infinite; /* Apply the custom animation */
   transition: border-color 10s; /* Add a transition for smooth change */
 }
@@ -110,14 +110,14 @@ td:last-child button {
   border: 2px solid transparent;
   border-radius: 15px;
   overflow: hidden;
-  animation: neonBorder 5s linear infinite alternate;
+  animation: neonBorder 10s linear infinite alternate;
 }
 
 .modal h2 {
   text-align: center;
   color: #fff;
   border-bottom: 1px solid #fff;
-  animation: borderChange 2s infinite;
+  animation: borderChange 10s infinite;
 }
 
 .modal-form {
@@ -156,12 +156,12 @@ td:last-child button {
 .modal-input-row input:hover {
   border-bottom: 3px solid transparent;
   border-bottom-color: hsl(200, 100%, 56%);
-  animation: neonBorderBottom 1s infinite;
+  animation: neonBorderBottom 10s infinite;
 }
 
 .modal-input-row input:focus {
   border-bottom: 3px solid transparent;
-  animation: neonBorderBottom 1s infinite;
+  animation: neonBorderBottom 10s infinite;
 }
 
 .modal-buttons {
