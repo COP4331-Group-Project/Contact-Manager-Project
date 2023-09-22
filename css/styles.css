@@ -7,11 +7,78 @@
 .background {
   height: 100%;
   width: 100%;
-  background-image: url("../images/circuitPurple.png");
+  background-image: url("../../images/circuitPurple.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   position: absolute;
+}
+
+.retro-light {
+  position: absolute;
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 221, 0, 0.8);
+  opacity: 0;
+  animation: flickerAnimation 2s infinite; /* Flickering Animation */
+  filter: blur(20px); /* Blur effect to the lights */
+}
+
+
+/* left second dot */ 
+.light1 {
+  top: 17%;
+  left: 31.6%;
+}
+
+/* right circle */ 
+.light2 {
+  top: 28%;
+  left: 94%;
+}
+
+/* left top dot */
+.light3 {
+  top: 14%;
+  left: 28%;
+}
+
+/* left bottom circle */
+.light4 {
+  top: 83%;
+  left: 16.4%;
+}
+
+/* right top dot */
+.light5 {
+  top: 55%;
+  left: 66.5%;
+}
+
+/* right bottom dot */
+.light6 {
+  top: 67%;
+  left: 66.5%;
+}
+
+/* right middle dot */
+.light7 {
+  top: 60%;
+  left: 74%;
+}
+
+/* Animation for flickering lights */
+@keyframes flickerAnimation {
+  0% {
+      opacity: 1; 
+  }
+  50% {
+      opacity: 0; 
+  }
+  100% {
+      opacity: 1;
+  }
 }
 
 .formBox {
