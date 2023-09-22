@@ -7,7 +7,8 @@
 .background {
   height: 100%;
   width: 100%;
-  background-color: #9599cc;
+  background-image: url("../../images/circuitPurple.png");
+  background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   position: absolute;
@@ -23,6 +24,7 @@
   animation: flickerAnimation 2s infinite; /* Flickering Animation */
   filter: blur(20px); /* Blur effect to the lights */
 }
+
 
 /* left second dot */ 
 .light1 {
@@ -85,6 +87,7 @@
   position: relative;
   margin: 6% auto;
   background: #fff;
+  box-shadow: 0 0 10px rgba(219, 74, 236, 1);
   padding: 5px;
   overflow: hidden;
 }
@@ -102,6 +105,13 @@
 .title-logo h1 {
   font-size: 24px;
   margin-top: 10px;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  margin-top: -15px;
 }
 
 .buttonBox {
@@ -127,13 +137,13 @@
   position: absolute;
   width: 110px;
   height: 100%;
-  background: #9599cc;
+  background: #77a9f0;
   border-radius: 30px;
   transition: .5s;
 }
 
 .input-group {
-  top: 210px;
+  top: 200px;
   position: absolute;
   width: 280px;
   transition: .5s;
@@ -171,7 +181,7 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  background: #9599cc;
+  background: #ac80f9;
   border: 0;
   outline: none;
   border-radius: 30px;
@@ -180,7 +190,7 @@
 }
 
 .login-btn:hover {
-  background: #636acf;
+  background: #db4aec;
 }
 
 .register-btn {
@@ -189,7 +199,7 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  background: #9599cc;
+  background: #ac80f9;
   border: 0;
   outline: none;
   border-radius: 30px;
@@ -198,7 +208,7 @@
 }
 
 .register-btn:hover {
-  background: #636acf;
+  background: #db4aec;
 }
 /* 
 input:invalid {
@@ -206,7 +216,7 @@ input:invalid {
 } */
 
 .checkbox {
-  margin: 20px 10px 30px 0;
+  margin: 30px 10px 30px 0;
 }
 
 .error-message {
