@@ -18,7 +18,17 @@
     
     <!-- TABLE -->
     <div class="tableContainer">
-      <h2>Available Contacts</h2>
+      <div class="container">
+        <h1>Available Contacts</h1>
+        <div class="searchFormContainer">
+          <form id="searchForm" class="searchForm">
+            <input id="searchContact" placeholder="Search Contact">
+            <button>
+              <img src="./images/search.png" alt="Search icon">
+            </button>
+          </form>
+        </div>
+      </div>
       <table>
         <thead>
           <tr>
@@ -58,64 +68,7 @@
                 Edit Icon
               </button>
             </td>
-          </tr>
-          <tr>
-            <td>Vincent</td>
-            <td>DiPietrantonio</td>
-            <td>V@gmail.com</td>
-            <td>2223334444</td>
-            <td>
-              <button 
-                id="deleteButton" 
-                class="deleteBtn" 
-                onclick="deleteRow(this)"
-              >
-                Remove Icon
-              </button>
-            </td>
-            <td>
-              <button  
-                id="editButton" 
-                class="editBtn" 
-                onclick="editRow(this)" 
-                data-firstname="Vincent" 
-                data-lastname="DiPietrantonio" 
-                data-email="V@gmail.com" 
-                data-phone="2223334444"
-                data-modal-id="editModal"
-              >
-                Edit Icon
-              </button>
-            </td>
-          </tr><tr>
-            <td>Vincent</td>
-            <td>DiPietrantonio</td>
-            <td>V@gmail.com</td>
-            <td>2223334444</td>
-            <td>
-              <button 
-                id="deleteButton" 
-                class="deleteBtn" 
-                onclick="deleteRow(this)"
-              >
-                Remove Icon
-              </button>
-            </td>
-            <td>
-              <button  
-                id="editButton" 
-                class="editBtn" 
-                onclick="editRow(this)" 
-                data-firstname="Vincent" 
-                data-lastname="DiPietrantonio" 
-                data-email="V@gmail.com" 
-                data-phone="2223334444"
-                data-modal-id="editModal"
-              >
-                Edit Icon
-              </button>
-            </td>
-          </tr>
+          </tr>          
         </tbody>
       </table>
     </div>
@@ -160,6 +113,6 @@
         </div>
       </form>
     </dialog>
-    <script src="ContactList.js"></script>
+    <script src="./js/ContactList.js"></script>
   </body>
 </html>

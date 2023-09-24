@@ -22,6 +22,7 @@ function login() {
 }
 
 async function doLogin() {
+    console.log("login func");
     let userId = 0;
     let login = document.getElementById("loginUsername").value;
     let password = document.getElementById("loginPassword").value;
@@ -34,6 +35,7 @@ async function doLogin() {
     let url = urlBase + '/Login.' + extension;
     console.log("created Hash entering try");
     try {
+	console.log("entering try");
         let response = await fetch(url, {
             method: "POST",
             headers: {
@@ -43,8 +45,9 @@ async function doLogin() {
         });
         if (response.ok) {
             let jsonObject = await response.json();
+            console.log(jsonObject);
             userId = jsonObject.id;
-            
+            console.log(userId);
             if (userId < 1) {
                 return;
             }
@@ -54,7 +57,7 @@ async function doLogin() {
 
             saveCookie();
 
-            window.location.href = "ContactList.html";
+           // window.location.href = "ContactList.html";
         } else {
             // Handle non-successful response (e.g., show an error message)
             console.error("Login failed:", response.statusText);
