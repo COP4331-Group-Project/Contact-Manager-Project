@@ -86,8 +86,9 @@
   height: 480px;
   position: relative;
   margin: 6% auto;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(219, 74, 236, 1);
+  border-radius: 10px;
+  background: rgba(50,15,115,255);
+  box-shadow: 0 0 50px rgba(219, 74, 236, 1);
   padding: 5px;
   overflow: hidden;
 }
@@ -95,6 +96,7 @@
 .title-logo {
   text-align: center;
   margin-top: 20px;
+  color: #14a5f8;
 }
 
 .title-logo img {
@@ -118,7 +120,7 @@
   width: 220px;
   margin: 35px auto;
   position: relative;
-  box-shadow: 0 0 10px 2px #bab8b8;
+  box-shadow: 0 0 10px 2px rgba(219, 74, 236, 1);;
   border-radius: 30px;
 }
 
@@ -129,6 +131,8 @@
   border: 0;
   outline: none;
   position: relative;
+  color: white;
+  font-size: 14px;
 }
 
 #btn {
@@ -137,7 +141,7 @@
   position: absolute;
   width: 110px;
   height: 100%;
-  background: #77a9f0;
+  background: rgba(219, 74, 236, 1);;
   border-radius: 30px;
   transition: .5s;
 }
@@ -149,6 +153,10 @@
   transition: .5s;
 }
 
+::placeholder {
+  color: white;
+}
+
 .input-field-login {
   width: 100%;
   padding: 10px 0;
@@ -156,9 +164,11 @@
   border-left: 0;
   border-top: 0;
   border-right: 0;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid rgba(219, 74, 236, 1);
   outline: none;
   background: transparent;
+  color: white;
+  font-size: 15px;
 }
 
 .input-field-register {
@@ -168,9 +178,11 @@
   border-left: 0;
   border-top: 0;
   border-right: 0;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid rgba(219, 74, 236, 1);;
   outline: none;
   background: transparent;
+  color: white;
+  font-size: 15px;
 }
 
 .login-btn {
@@ -181,16 +193,16 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  background: #ac80f9;
+  background: #db4aec;
   border: 0;
   outline: none;
   border-radius: 30px;
   transition: background 0.3s;
-  color: 0.3s;
+  color: white;
 }
 
 .login-btn:hover {
-  background: #db4aec;
+  background: #14a5f8;
 }
 
 .register-btn {
@@ -199,16 +211,17 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  background: #ac80f9;
+  background: #db4aec;
   border: 0;
   outline: none;
   border-radius: 30px;
   transition: background 0.3s;
   color: 0.3s;
+  color: white;
 }
 
 .register-btn:hover {
-  background: #db4aec;
+  background: #14a5f8;;
 }
 /* 
 input:invalid {
@@ -227,7 +240,7 @@ input:invalid {
 }
 
 span {
-  color: #777;
+  color: #14a5f8;;
   font-size: 12px;
   bottom: 68px;
   position: absolute;
