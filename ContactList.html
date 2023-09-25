@@ -4,7 +4,7 @@
     <title>ContactList</title>
     <link rel="stylesheet" href="./css/ContactList.css">
   </head>
-  <body>
+  <body onload="search()">
     <header class="header">
       <h1>RETRO CONTACTS</h1>
       <!-- NAV BAR -->
@@ -29,20 +29,22 @@
           </form>
         </div>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-            <th>Phone Number</th>
-            <th colspan="2">Actions</th>
-          </tr>
-        </thead>
-        <tbody id="tableBody"> 
-
-        </tbody>
-      </table>
+      <div class="tableWrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone Number</th>
+              <th colspan="2">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"> 
+            <!-- INFO INSERTED FROM JAVASCRIPT FUNCTION -->
+          </tbody>
+        </table>
+      </div>
     </div>
 
     <!-- ADD CONTACT MODAL  -->

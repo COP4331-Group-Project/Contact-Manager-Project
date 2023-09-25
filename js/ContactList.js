@@ -180,7 +180,7 @@ function search()
 	let srch = document.getElementById("searchContact").value.trim();
   const userId = localStorage.getItem("userId");
 
-	let tmp = { search:srch, userId:userId };
+	let tmp = { FirstName:srch, userId:userId };
 	let jsonPayload = JSON.stringify( tmp );
   console.log(jsonPayload);
 
@@ -233,18 +233,7 @@ function search()
 
             // Add Action Cells
             actionCell1.innerHTML = `
-              <td>
-                <button
-                  id="deleteButton"
-                  class="deleteBtn"
-                  onclick="deleteRow(this)"
-                >
-                  Remove Icon
-                </button>
-              </td>
-            `
-            actionCell2.innerHTML = `
-              <td>
+            <td>
                 <button
                   id="editButton"
                   class="editBtn"
@@ -256,6 +245,17 @@ function search()
                   data-modal-id="editModal"
                 >
                   Edit Icon
+                </button>
+              </td>
+            `
+            actionCell2.innerHTML = `
+              <td>
+                <button
+                  id="deleteButton"
+                  class="deleteBtn"
+                  onclick="deleteRow(this)"
+                >
+                  Remove Icon
                 </button>
               </td>
             `

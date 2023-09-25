@@ -131,11 +131,27 @@ body {
   justify-content: center;
 }
 
+.tableWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-height: 450px;
+  overflow-y: auto;
+}
+
 table {
   width: 80%;
   border-collapse: collapse;
   background-color: rgba(28,12,51,255);
   table-layout: fixed;
+}
+
+thead {
+  position: sticky;
+  background-color: rgba(28,12,51,255);
+  top: 0;
+  z-index: 1;
 }
 
 th {
@@ -162,6 +178,21 @@ td:last-child {
 
 td:last-child button {
   margin: 5px;
+}
+
+/* WebKit Scrollbar Styling with Glow Effect */
+.tableWrapper::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+.tableWrapper::-webkit-scrollbar-thumb {
+  background: hsl(200, 100%, 56%); /* Color of the thumb (scrollbar handle) */
+  border-radius: 6px; /* Round the corners of the thumb */
+  box-shadow: 0 0 10px 5px hsl(200, 100%, 56%); /* Glow effect using box-shadow */
+}
+
+.tableWrapper::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.8); /* White background with some transparency */
 }
 
 /* MODAL STYLING */
