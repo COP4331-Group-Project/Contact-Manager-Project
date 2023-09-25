@@ -80,7 +80,7 @@ body {
   display: flex;
   align-items: center;
   border-radius: 60px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border-bottom: 3px solid transparent;
   border-bottom-color: hsl(200, 100%, 56%);
   animation: neonBorderBottom 10s infinite;
@@ -120,7 +120,7 @@ body {
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  margin: 30px;
+  margin: 15px;
 }
 
 .tableContainer h1 {
@@ -131,7 +131,6 @@ body {
 }
 
 table {
-  border: 1px solid white;
   width: 80%;
   border-collapse: collapse;
   background-color: rgba(28,12,51,255);
@@ -152,7 +151,7 @@ th, td {
   border-top: 2px solid transparent;
   animation: neonBorderTable 10s infinite;
   transition: border-color 10s; 
-  font-size: 25px;
+  font-size: 18px;
 }
 
 td:last-child {
