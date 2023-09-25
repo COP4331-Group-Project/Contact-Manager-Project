@@ -5,7 +5,7 @@ var x = document.getElementById("login");
 var y = document.getElementById("register");
 var z = document.getElementById("btn");
 
-let userId = 0;
+let userId;
 let firstName = "";
 let lastName = "";
 
@@ -22,8 +22,7 @@ function login() {
 }
 
 async function doLogin() {
-    console.log("login func");
-    let userId = 0;
+    let userId;
     let login = document.getElementById("loginUsername").value;
     let password = document.getElementById("loginPassword").value;
 
@@ -33,9 +32,7 @@ async function doLogin() {
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/Login.' + extension;
-    console.log("created Hash entering try");
     try {
-	console.log("entering try");
         let response = await fetch(url, {
             method: "POST",
             headers: {
@@ -47,7 +44,7 @@ async function doLogin() {
             let jsonObject = await response.json();
             console.log(jsonObject);
             userId = jsonObject.id;
-            console.log(userId);
+            localStorage.setItem("userId", jsonObject.id);
             if (userId < 1) {
                 return;
             }
@@ -57,7 +54,7 @@ async function doLogin() {
 
             saveCookie();
 
-           // window.location.href = "ContactList.html";
+            window.location.href = "ContactList.html";
         } else {
             // Handle non-successful response (e.g., show an error message)
             console.error("Login failed:", response.statusText);
@@ -106,7 +103,6 @@ const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, 
 
 function registerNewUser()
 {
-    console.log("ENTER FUNCT");
     // For error handling
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
@@ -119,7 +115,6 @@ function registerNewUser()
     // Getting the username/password
     const username = document.getElementById('userName').value.trim();
     const password = document.getElementById('password').value.trim();
-    console.log("HANDLING FORM ERR");
     // Handles errors in the form 
     if (!validateRegistrationForm(firstNameInput, lastNameInput, usernameInput, passwordInput))
     {
@@ -127,7 +122,6 @@ function registerNewUser()
         errorMsg.style.display = 'block';
         return;
     }
-    console.log("HASHING PASS AND GETTING DATA READY");
     // Handles a valid form and sending to the database
     let hashedPassword = md5(password);
 
@@ -146,47 +140,16 @@ function registerNewUser()
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    console.log("ENTER TRY");
     try {
-            console.log("Send payload");
             xhr.send(payload);
         }
     catch (err)
     {
-        console.log("FUCK");
+        console.log("err");
     }
     console.log("SUCCESS");
     return;
 }
-
-// const sendNewUserData = async (url, data) => {
-//     try 
-//     {
-//         const response = await fetch(url, {
-//             method: "POST",
-//             body: data,
-//             headers: {
-//                 'Content-type': 'application/json',
-//             },
-//         });
-
-//         // Response/errors
-//         if (response.ok) 
-//         {
-//             const res = await response.json();
-//             console.log(res);
-//         }
-//         else 
-//         {
-//             console.error("HTTP Error:", response.status);
-//         }
-//     }
-//     catch (error) 
-//     {
-//         console.error('An error occurred:', error);
-//     }
-//     return;
-// }
 
 const showErr = (inputId) => 
 {

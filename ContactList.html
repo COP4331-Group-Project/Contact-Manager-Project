@@ -12,7 +12,7 @@
         <button>HOME</button>
         <button>ABOUT</button>
         <button onclick="addContact()">ADD CONTACT</button>
-        <button>LOGOUT</button>
+        <button type="button" onclick="doLogout();">LOGOUT</button>
       </nav>
     </header>
     
@@ -23,7 +23,7 @@
         <div class="searchFormContainer">
           <form id="searchForm" class="searchForm">
             <input id="searchContact" placeholder="Search Contact">
-            <button>
+            <button type="button" onclick="search()">
               <img src="./images/search.png" alt="Search icon">
             </button>
           </form>
@@ -39,36 +39,8 @@
             <th colspan="2">Actions</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Vincent</td>
-            <td>DiPietrantonio</td>
-            <td>V@gmail.com</td>
-            <td>2223334444</td>
-            <td>
-              <button 
-                id="deleteButton" 
-                class="deleteBtn" 
-                onclick="deleteRow(this)"
-              >
-                Remove Icon
-              </button>
-            </td>
-            <td>
-              <button  
-                id="editButton" 
-                class="editBtn" 
-                onclick="editRow(this)" 
-                data-firstname="Vincent" 
-                data-lastname="DiPietrantonio" 
-                data-email="V@gmail.com" 
-                data-phone="2223334444"
-                data-modal-id="editModal"
-              >
-                Edit Icon
-              </button>
-            </td>
-          </tr>          
+        <tbody id="tableBody"> 
+
         </tbody>
       </table>
     </div>
@@ -88,7 +60,7 @@
           </div>
           <div class="modal-buttons">
             <button type="button" onclick="closeModal('addContactModal')">Cancel</button>
-            <button type="submit" onclick="add()">Add Contact</button>
+            <button type="button" onclick="add()">Add Contact</button>
             <span id="contactSearchResult"></span>
           </div>
         </div>
@@ -97,7 +69,7 @@
     <!-- Edit form initially hidden-->
     <dialog id="editModal" class="modal">
       <h2>Edit Contact</h2>
-      <form class="modal-form" id="editRowForm" onsubmit="updateRow(); return false;">
+      <form class="modal-form" id="editRowForm">
         <div class="modal-input-container">
           <div class="modal-input-row">
             <input type="text" id="editFirstName" placeholder="First Name">
@@ -109,7 +81,7 @@
           </div>
           <div class="modal-buttons">
             <button type="button" onclick="closeModal('editModal')">Cancel</button>
-            <button type="submit">Confirm</button>
+            <button type="button" onclick="updateRow()">Confirm</button>
           </div>
         </div>
       </form>
