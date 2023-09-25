@@ -301,7 +301,8 @@ function add()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-        console.log("success");
+        search();
+        contactModal.close();
 			}
 		};
 		xhr.send(jsonPayload);

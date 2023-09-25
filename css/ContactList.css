@@ -51,7 +51,7 @@ body {
   width: 100%;
 }
 
-.header h2 {
+.header h1 {
   margin-left: 150px;
   color: #fff;
   border-bottom: 2px solid #fff;
@@ -80,7 +80,7 @@ body {
   display: flex;
   align-items: center;
   border-radius: 60px;
-  padding: 5px 10px;
+  padding-left: 10px;
   border-bottom: 3px solid transparent;
   border-bottom-color: hsl(200, 100%, 56%);
   animation: neonBorderBottom 10s infinite;
@@ -91,17 +91,18 @@ body {
   flex: 1;
   border: 0;
   outline: none;
-  padding: 12px 10px;
   font-size: 25px;
   color: #fff;
 }
 
 .searchForm input::placeholder {
   color: white;
+  font-size: 18px;
+  padding-left: 15px;
 }
 
 .searchForm button, img {
-  width: 40px;
+  width: 30px;
 }
 
 .searchForm button {
