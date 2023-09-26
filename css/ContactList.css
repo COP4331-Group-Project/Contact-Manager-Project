@@ -120,7 +120,6 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  overflow: hidden;
   margin: 15px;
 }
 
@@ -135,13 +134,19 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   max-height: 450px;
+  max-width: 80%;
   overflow-y: auto;
 }
 
+.noContacts {
+  display: none;
+  text-align: center;
+  color: white;
+}
+
 table {
-  width: 80%;
+  width: 100%;
   border-collapse: collapse;
   background-color: rgba(28,12,51,255);
   table-layout: fixed;
@@ -149,9 +154,10 @@ table {
 
 thead {
   position: sticky;
-  background-color: rgba(28,12,51,255);
+  background-color: #671d66;
   top: 0;
   z-index: 1;
+  padding: 5px;
 }
 
 th {
@@ -159,15 +165,15 @@ th {
 }
 td {
   padding: 5px;
-}
-
-th, td {
   background-color: rgba(28,12,51,255);
-  color: #fff;
-  text-align: center;
   border-top: 2px solid transparent;
   animation: neonBorderTable 10s infinite;
   transition: border-color 10s; 
+}
+
+th, td {
+  color: #fff;
+  text-align: center;
   font-size: 18px;
 }
 
@@ -180,19 +186,91 @@ td:last-child button {
   margin: 5px;
 }
 
-/* WebKit Scrollbar Styling with Glow Effect */
+.editBtn {
+  color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  background: transparent;
+  border: none;
+  transition: .5s;
+  font-size: 17px;
+  position: relative;
+}
+
+.editBtn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  transition: .5s;
+  animation: borderChange 2s infinite;
+  border-bottom: 3px solid hsl(200, 100%, 56%);
+}
+
+.editBtn:hover::before {
+  width: 100%;
+}
+
+.deleteBtn {
+  color: #fff;
+  padding: 5px;
+  cursor: pointer;
+  margin-right: 15px;
+  background: transparent;
+  border: none;
+  transition: .5s;
+  font-size: 17px;
+  position: relative;
+}
+
+.deleteBtn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  transition: .5s;
+  animation: borderChange 2s infinite;
+  border-bottom: 3px solid hsl(200, 100%, 56%);
+}
+
+.deleteBtn:hover::before {
+  width: 100%;
+}
+
+/* Styling for Webkit (Chrome, Safari) */
 .tableWrapper::-webkit-scrollbar {
-  width: 12px; /* Width of the scrollbar */
+  width: 10px; /* Adjust the width as needed */
 }
 
 .tableWrapper::-webkit-scrollbar-thumb {
-  background: hsl(200, 100%, 56%); /* Color of the thumb (scrollbar handle) */
-  border-radius: 6px; /* Round the corners of the thumb */
-  box-shadow: 0 0 10px 5px hsl(200, 100%, 56%); /* Glow effect using box-shadow */
+  background: hsl(270, 100%, 76%);
+  border-radius: 5px;
+}
+
+.tableWrapper::-webkit-scrollbar-thumb:hover {
+  background:hsl(200, 100%, 56%);; /* Color when hovering over the thumb */
 }
 
 .tableWrapper::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.8); /* White background with some transparency */
+  background: rgba(0, 0, 0, 0.2); /* Color of the scrollbar track */
+}
+
+/* Styling for Firefox */
+.tableWrapper {
+  scrollbar-width: thin;
+  scrollbar-color: #888 rgba(0, 0, 0, 0.2); /* thumbColor trackColor */
+}
+
+/* Styling for Internet Explorer and Microsoft Edge */
+.tableWrapper {
+  -ms-overflow-style: none; /* Hide default scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #888 rgba(0, 0, 0, 0.2); /* thumbColor trackColor */
 }
 
 /* MODAL STYLING */
