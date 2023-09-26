@@ -5,9 +5,11 @@ var x = document.getElementById("login");
 var y = document.getElementById("register");
 var z = document.getElementById("btn");
 
-let userId = 0;
+let userId;
 let firstName = "";
 let lastName = "";
+
+let passwordIncorrect = false;
 
 function register() {
     x.style.left = "-400px";
@@ -22,17 +24,24 @@ function login() {
 }
 
 async function doLogin() {
-    let userId = 0;
+    let userId;
+    
+    let usernameField = document.getElementById("loginUsername");
+    let passwordField = document.getElementById("loginPassword");
+    
     let login = document.getElementById("loginUsername").value;
     let password = document.getElementById("loginPassword").value;
+    
+    // Reset username and password border colors
+    usernameField.style.borderBottom = "1px solid #999";
+    passwordField.style.borderBottom = "1px solid #999";
 
     var hash = md5(password);
-
     let tmp = { Login: login, Password: hash };
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + '/Login.' + extension;
-    console.log("created Hash entering try");
+
     try {
         let response = await fetch(url, {
             method: "POST",
@@ -41,28 +50,63 @@ async function doLogin() {
             },
             body: jsonPayload
         });
-        if (response.ok) {
-            let jsonObject = await response.json();
-            userId = jsonObject.id;
-            
-            if (userId < 1) {
-                return;
-            }
 
+        if (!response.ok) {
+            // Handle non-successful response (e.g., show an error message)
+            console.error("Login failed:", response.statusText);
+            return;
+        }
+
+        let jsonObject = await response.json();
+        console.log(jsonObject);
+        userId = jsonObject.id;
+        localStorage.setItem("userId", jsonObject.id);
+
+        if (userId < 1) {
+            let xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let jsonObject = JSON.parse(xhr.responseText);
+                    userId = jsonObject.id;
+
+                    if (userId < 1)
+                    {
+                       const loginResult = document.getElementById("loginResult");
+                       loginResult.textContent = "User/Password combination incorrect";
+                       loginResult.style.display = 'block';
+                       
+                       usernameField.style.borderBottom = "1px solid red";
+                       usernameField.placeholder += " *";
+                       
+                       passwordField.style.borderBottom = "1px solid red";
+                       passwordField.placeholder += " *";
+                       
+                       return;
+                    }
+
+                    firstName = jsonObject.firstName;
+                    lastName = jsonObject.lastName;
+
+                    saveCookie();
+
+                    window.location.href = "contact.html";
+                }
+            };
+            xhr.open("POST", url, true);
+            xhr.send(jsonPayload);
+        } else {
             firstName = jsonObject.firstName;
             lastName = jsonObject.lastName;
 
             saveCookie();
 
             window.location.href = "ContactList.html";
-        } else {
-            // Handle non-successful response (e.g., show an error message)
-            console.error("Login failed:", response.statusText);
         }
     } catch (err) {
         console.error(err);
     }
 }
+
 
 const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, passwordInput) =>
 {
@@ -77,33 +121,41 @@ const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, 
     // Validate first name
     if (firstNameInput.value.trim() === "") {
         firstNameInput.style.borderBottom = "1px solid red";
+        firstNameInput.placeholder += " *";
         return false;
     }
 
     // Validate last name
-    if (lastNameInput.value.trim() === "") {
+    else if (lastNameInput.value.trim() === "") {
         lastNameInput.style.borderBottom = "1px solid red";
+        lastNameInput.placeholder += " *";
         return false;
     }
 
     // Validate username
-    if (usernameInput.value.length < 1) {
+    else if (usernameInput.value.length < 1) {
         usernameInput.style.borderBottom = "1px solid red";
+        usernameInput.placeholder += " *";
         return false;
     }
 
     // Validate password
-    if (passwordInput.value.length < 5) {
+    else if (passwordInput.value.length < 5) {
+        passwordIncorrect = true;
         passwordInput.style.borderBottom = "1px solid red";
+        passwordInput.placeholder += " *";
         return false;
     }
+    
+    else
+    {
+      return true;
+    }
 
-    return true;
 }
 
 function registerNewUser()
 {
-    console.log("ENTER FUNCT");
     // For error handling
     const firstNameInput = document.getElementById('firstName');
     const lastNameInput = document.getElementById('lastName');
@@ -116,15 +168,23 @@ function registerNewUser()
     // Getting the username/password
     const username = document.getElementById('userName').value.trim();
     const password = document.getElementById('password').value.trim();
-    console.log("HANDLING FORM ERR");
     // Handles errors in the form 
     if (!validateRegistrationForm(firstNameInput, lastNameInput, usernameInput, passwordInput))
     {
-        const errorMsg = document.getElementById('errorMsg');
-        errorMsg.style.display = 'block';
-        return;
+        if (!passwordIncorrect)
+        {
+          const errorMsg = document.getElementById('errorMsg');
+          errorMsg.style.display = 'block';
+          return;
+        }
+        else
+        {
+          const passErrorMsg = document.getElementById('passErrorMsg');
+          passErrorMsg.style.display = 'block';
+          return;
+        }
+        
     }
-    console.log("HASHING PASS AND GETTING DATA READY");
     // Handles a valid form and sending to the database
     let hashedPassword = md5(password);
 
@@ -143,47 +203,16 @@ function registerNewUser()
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    console.log("ENTER TRY");
     try {
-            console.log("Send payload");
             xhr.send(payload);
         }
     catch (err)
     {
-        console.log("FUCK");
+        console.log("err");
     }
     console.log("SUCCESS");
     return;
 }
-
-// const sendNewUserData = async (url, data) => {
-//     try 
-//     {
-//         const response = await fetch(url, {
-//             method: "POST",
-//             body: data,
-//             headers: {
-//                 'Content-type': 'application/json',
-//             },
-//         });
-
-//         // Response/errors
-//         if (response.ok) 
-//         {
-//             const res = await response.json();
-//             console.log(res);
-//         }
-//         else 
-//         {
-//             console.error("HTTP Error:", response.status);
-//         }
-//     }
-//     catch (error) 
-//     {
-//         console.error('An error occurred:', error);
-//     }
-//     return;
-// }
 
 const showErr = (inputId) => 
 {
@@ -195,6 +224,16 @@ const clearErr = (inputId) =>
 {
     const inputElement = document.getElementById(inputId);
     inputElement.style.borderBottom = '1px solid red';
+}
+
+function clearErrorMessages() {
+    const errorMsg = document.getElementById('errorMsg');
+    const passErrorMsg = document.getElementById('passErrorMsg');
+    const loginResult = document.getElementById('loginResult');
+
+    errorMsg.style.display = 'none';
+    passErrorMsg.style.display = 'none';
+    loginResult.style.display = 'none';
 }
 
  function saveCookie()
@@ -237,12 +276,3 @@ const clearErr = (inputId) =>
  		document.getElementById("userName").innerHTML = "Logged in as " + firstName + " " + lastName;
  	}
  }
-
-// function doLogout()
-// {
-// 	userId = 0;
-// 	firstName = "";
-// 	lastName = "";
-// 	document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
-// 	window.location.href = "index.html";
-// }

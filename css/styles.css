@@ -1,13 +1,13 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .background {
   height: 100%;
   width: 100%;
-  background-image: url('../images/circuitPurple.png');
+  background-image: url("../../images/circuitPurple.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -24,6 +24,7 @@
   animation: flickerAnimation 2s infinite; /* Flickering Animation */
   filter: blur(20px); /* Blur effect to the lights */
 }
+
 
 /* left second dot */ 
 .light1 {
@@ -82,11 +83,12 @@
 
 .formBox {
   width: 380px;
-  height: 480px;
+  height: 510px;
   position: relative;
   margin: 6% auto;
-  background: #fff;
-  box-shadow: 0 0 10px rgba(219, 74, 236, 1);
+  border-radius: 10px;
+  background: rgba(50,15,115,255);
+  box-shadow: 0 0 50px rgba(219, 74, 236, 1);
   padding: 5px;
   overflow: hidden;
 }
@@ -94,6 +96,7 @@
 .title-logo {
   text-align: center;
   margin-top: 20px;
+  color: white;
 }
 
 .title-logo img {
@@ -104,6 +107,10 @@
 .title-logo h1 {
   font-size: 24px;
   margin-top: 10px;
+}
+
+.slogan {
+  font-family: Arial;
 }
 
 .logo {
@@ -117,7 +124,7 @@
   width: 220px;
   margin: 35px auto;
   position: relative;
-  box-shadow: 0 0 10px 2px #bab8b8;
+  box-shadow: 0 0 10px 2px rgba(219, 74, 236, 1);;
   border-radius: 30px;
 }
 
@@ -128,6 +135,8 @@
   border: 0;
   outline: none;
   position: relative;
+  color: white;
+  font-size: 11px;
 }
 
 #btn {
@@ -136,16 +145,20 @@
   position: absolute;
   width: 110px;
   height: 100%;
-  background: #77a9f0;
+  background: rgba(219, 74, 236, 1);;
   border-radius: 30px;
   transition: .5s;
 }
 
 .input-group {
-  top: 210px;
+  top: 220px;
   position: absolute;
   width: 280px;
   transition: .5s;
+}
+
+::placeholder {
+  color: white;
 }
 
 .input-field-login {
@@ -155,9 +168,12 @@
   border-left: 0;
   border-top: 0;
   border-right: 0;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid rgba(219, 74, 236, 1);
   outline: none;
   background: transparent;
+  color: white;
+  font-size: 14px;
+  font-family: Arial;
 }
 
 .input-field-register {
@@ -167,9 +183,12 @@
   border-left: 0;
   border-top: 0;
   border-right: 0;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid rgba(219, 74, 236, 1);;
   outline: none;
   background: transparent;
+  color: white;
+  font-size: 15px;
+  font-family: Arial;
 }
 
 .login-btn {
@@ -180,16 +199,16 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  background: #ac80f9;
+  background: #db4aec;
   border: 0;
   outline: none;
   border-radius: 30px;
   transition: background 0.3s;
-  color: 0.3s;
+  color: white;
 }
 
 .login-btn:hover {
-  background: #db4aec;
+  background: #14a5f8;
 }
 
 .register-btn {
@@ -198,16 +217,17 @@
   cursor: pointer;
   display: block;
   margin: auto;
-  background: #ac80f9;
+  background: #db4aec;
   border: 0;
   outline: none;
   border-radius: 30px;
   transition: background 0.3s;
   color: 0.3s;
+  color: white;
 }
 
 .register-btn:hover {
-  background: #db4aec;
+  background: #14a5f8;;
 }
 /* 
 input:invalid {
@@ -215,7 +235,12 @@ input:invalid {
 } */
 
 .checkbox {
-  margin: 20px 10px 30px 0;
+  margin: 30px 10px 30px 0;
+}
+
+.agree-stmt {
+  font-family: Arial;
+  text-align: center;
 }
 
 .error-message {
@@ -226,7 +251,7 @@ input:invalid {
 }
 
 span {
-  color: #777;
+  color: #14a5f8;;
   font-size: 12px;
   bottom: 68px;
   position: absolute;
@@ -241,7 +266,8 @@ span {
 }
 
 .errorMsg {
+  font-family: Arial;
   display: none;
-  margin-top: 15px;
+  margin-top: 10px;
   color: red;
 }
