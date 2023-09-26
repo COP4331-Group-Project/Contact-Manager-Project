@@ -9,8 +9,7 @@
       <h1>RETRO CONTACTS</h1>
       <!-- NAV BAR -->
       <nav class="navbar">
-        <button>HOME</button>
-        <button>ABOUT</button>
+        <button type="button" onclick="refreshPage()">HOME</button>
         <button onclick="addContact()">ADD CONTACT</button>
         <button type="button" onclick="doLogout();">LOGOUT</button>
       </nav>
@@ -22,8 +21,8 @@
         <h1>Available Contacts</h1>
         <div class="searchFormContainer">
           <form id="searchForm" class="searchForm">
-            <input id="searchContact" placeholder="Search Contact">
-            <button type="button" onclick="search()">
+            <input id="searchContact" placeholder="Search Contact" onkeyup="search()">
+            <button type="button">
               <img src="./images/search.png" alt="Search icon">
             </button>
           </form>
@@ -44,6 +43,7 @@
             <!-- INFO INSERTED FROM JAVASCRIPT FUNCTION -->
           </tbody>
         </table>
+        <h2 id="noContacts" class="noContacts">No Contacts Found</h2>
       </div>
     </div>
 

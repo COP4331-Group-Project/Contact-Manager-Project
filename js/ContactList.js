@@ -177,10 +177,11 @@ contactModal.addEventListener('click', (event) =>
 
 function search()
 {
+  const noContactElement = document.getElementById("noContacts");
 	let srch = document.getElementById("searchContact").value.trim();
   const userId = localStorage.getItem("userId");
 
-	let tmp = { FirstName:srch, userId:userId };
+	let tmp = { search:srch, userId:userId };
 	let jsonPayload = JSON.stringify( tmp );
   console.log(jsonPayload);
 
@@ -195,18 +196,18 @@ function search()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				// document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
 
         if (jsonObject.results == null) 
         {
-          document.getElementById('tableBody').innerHTML = '';
+          document.getElementById('tableBody').innerHTML = ``;
+          noContactElement.style.display = 'flex';
           return;
         } 
         else
         {
+          noContactElement.style.display = 'none';
           let tableBody = document.getElementById("tableBody");
-
           tableBody.innerHTML = '';
 
           jsonObject.results.forEach((results) => 
@@ -244,7 +245,7 @@ function search()
                   data-phone="${results.Phone}"
                   data-modal-id="editModal"
                 >
-                  Edit Icon
+                  EDIT
                 </button>
               </td>
             `
@@ -255,7 +256,7 @@ function search()
                   class="deleteBtn"
                   onclick="deleteRow(this)"
                 >
-                  Remove Icon
+                  REMOVE
                 </button>
               </td>
             `
