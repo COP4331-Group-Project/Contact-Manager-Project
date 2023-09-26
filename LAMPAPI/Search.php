@@ -1,5 +1,6 @@
 <?php
 
+	session_start(); // Start a PHP session (if not already started)
 	$inData = getRequestInfo();
 	
 	$searchResults = "";
@@ -12,9 +13,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName FROM Contacts WHERE FirstName LIKE ? and UserID=?");
+		$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE FirstName LIKE ? and UserID=?");
 		$firstName = "%" . $inData["FirstName"] . "%";
-		$stmt->bind_param("ss", $firstName, $inData["UserID"]);
+		$stmt->bind_param("ss", $firstName, $_SESSION["UserID"]);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
@@ -26,7 +27,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["FirstName"] . '"';
+			$searchResults .= json_encode($row);
 		}
 		
 		if( $searchCount == 0 )

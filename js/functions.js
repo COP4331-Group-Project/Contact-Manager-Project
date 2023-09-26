@@ -25,13 +25,13 @@ function login() {
 
 async function doLogin() {
     let userId;
-    
+
     let usernameField = document.getElementById("loginUsername");
     let passwordField = document.getElementById("loginPassword");
-    
+
     let login = document.getElementById("loginUsername").value;
     let password = document.getElementById("loginPassword").value;
-    
+
     // Reset username and password border colors
     usernameField.style.borderBottom = "1px solid #999";
     passwordField.style.borderBottom = "1px solid #999";
@@ -74,13 +74,13 @@ async function doLogin() {
                        const loginResult = document.getElementById("loginResult");
                        loginResult.textContent = "User/Password combination incorrect";
                        loginResult.style.display = 'block';
-                       
+
                        usernameField.style.borderBottom = "1px solid red";
                        usernameField.placeholder += " *";
-                       
+
                        passwordField.style.borderBottom = "1px solid red";
                        passwordField.placeholder += " *";
-                       
+
                        return;
                     }
 
@@ -146,7 +146,7 @@ const validateRegistrationForm = (firstNameInput, lastNameInput, usernameInput, 
         passwordInput.placeholder += " *";
         return false;
     }
-    
+
     else
     {
       return true;
@@ -163,12 +163,12 @@ function registerNewUser()
     const passwordInput = document.getElementById('password');
 
     // Getting the users full name
-    const firstName = document.getElementById('firstName').value.trim(); 
+    const firstName = document.getElementById('firstName').value.trim();
     const lastName = document.getElementById('lastName').value.trim();
     // Getting the username/password
     const username = document.getElementById('userName').value.trim();
     const password = document.getElementById('password').value.trim();
-    // Handles errors in the form 
+    // Handles errors in the form
     if (!validateRegistrationForm(firstNameInput, lastNameInput, usernameInput, passwordInput))
     {
         if (!passwordIncorrect)
@@ -183,12 +183,12 @@ function registerNewUser()
           passErrorMsg.style.display = 'block';
           return;
         }
-        
+
     }
     // Handles a valid form and sending to the database
     let hashedPassword = md5(password);
 
-    let formData = 
+    let formData =
     {
         FirstName: firstName,
         LastName: lastName,
@@ -214,7 +214,7 @@ function registerNewUser()
     return;
 }
 
-const showErr = (inputId) => 
+const showErr = (inputId) =>
 {
     const inputElement = document.getElementById(inputId);
     inputElement.style.borderBottom = '1px solid red';
@@ -240,7 +240,7 @@ function clearErrorMessages() {
  {
  	let minutes = 20;
  	let date = new Date();
- 	date.setTime(date.getTime()+(minutes*60*1000));	
+ 	date.setTime(date.getTime()+(minutes*60*1000));
 	document.cookie = "firstName=" + firstName + ",lastName=" + lastName + ",userId=" + userId + ";expires=" + date.toGMTString();
  }
 
@@ -249,7 +249,7 @@ function clearErrorMessages() {
  	userId = -1;
  	let data = document.cookie;
 	let splits = data.split(",");
- 	for(var i = 0; i < splits.length; i++) 
+ 	for(var i = 0; i < splits.length; i++)
  	{
  		let thisOne = splits[i].trim();
  		let tokens = thisOne.split("=");
@@ -266,7 +266,7 @@ function clearErrorMessages() {
 			userId = parseInt( tokens[1].trim() );
  		}
  	}
-	
+
  	if( userId < 0 )
  	{
  		window.location.href = "index.html";

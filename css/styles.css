@@ -16,7 +16,7 @@
 
 .retro-light {
   position: absolute;
-  width: 40px; 
+  width: 40px;
   height: 40px;
   border-radius: 50%;
   background: rgba(255, 221, 0, 0.8);
@@ -26,13 +26,13 @@
 }
 
 
-/* left second dot */ 
+/* left second dot */
 .light1 {
   top: 17%;
   left: 31.6%;
 }
 
-/* right circle */ 
+/* right circle */
 .light2 {
   top: 28%;
   left: 94%;
@@ -71,10 +71,10 @@
 /* Animation for flickering lights */
 @keyframes flickerAnimation {
   0% {
-      opacity: 1; 
+      opacity: 1;
   }
   50% {
-      opacity: 0; 
+      opacity: 0;
   }
   100% {
       opacity: 1;
@@ -101,7 +101,7 @@
 
 .title-logo img {
   width: 50px;
-  height: 50px; 
+  height: 50px;
 }
 
 .title-logo h1 {
@@ -229,7 +229,7 @@
 .register-btn:hover {
   background: #14a5f8;;
 }
-/* 
+/*
 input:invalid {
   border-bottom: 1px solid red;
 } */
