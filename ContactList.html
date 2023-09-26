@@ -3,10 +3,11 @@
   <head>
     <title>ContactList</title>
     <link rel="stylesheet" href="./css/ContactList.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Orbitron">
   </head>
   <body onload="search()">
     <header class="header">
-      <h1>RETRO CONTACTS</h1>
+      <h1 class="headerName">RETRO CONTACTS</h1>
       <!-- NAV BAR -->
       <nav class="navbar">
         <button type="button" onclick="refreshPage()">HOME</button>
@@ -50,15 +51,17 @@
     <!-- ADD CONTACT MODAL  -->
     <dialog id="addContactModal" class="modal">
       <h2>Add Contact</h2>
+      <h5 id="error">Error Adding Contact!</h5>
+      <h5 id="success">Successfully Added Contact!</h5>
       <form class="modal-form" id="addContactForm">
         <div class="modal-input-container">
           <div class="modal-input-row">
-            <input type="text" id="newFirstName" placeholder="First Name">
-            <input type="text" id="newLastName" placeholder="Last Name">
+            <input type="text" id="newFirstName" placeholder="First Name" required>
+            <input type="text" id="newLastName" placeholder="Last Name" required>
           </div>
           <div class="modal-input-row">
-            <input type="text" id="newEmail" placeholder="Email">
-            <input type="text" id="newPhoneNum" placeholder="Phone Number">
+            <input type="email" id="newEmail" placeholder="Email" required>
+            <input type="number" id="newPhoneNum" placeholder="Phone Number" required>
           </div>
           <div class="modal-buttons">
             <button type="button" onclick="closeModal('addContactModal')">Cancel</button>

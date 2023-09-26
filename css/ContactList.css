@@ -1,5 +1,10 @@
+* {
+  font-family: Arial;
+}
+
 body {
-  font: 18px/1.5 Arial, sans-serif;
+  font: 18px/1.5;
+  font-family: "Arial", sans-serif;
   margin: 0;
   padding: 0;
   background-image: url('../images/backgroundimg.jpg');
@@ -18,11 +23,16 @@ body {
   align-items: center;
 }
 
+.headerName {
+  font-family: Orbitron;
+}
+
 .navbar {
   margin-right: 75px;
 }
 
 .navbar button {
+  font-family: "Arial", sans-serif;
   position: relative;
   font-size: 25px;
   color: #fff;
@@ -96,6 +106,7 @@ body {
 }
 
 .searchForm input::placeholder {
+  font-family: "Arial", sans-serif;
   color: white;
   font-size: 18px;
   padding-left: 15px;
@@ -106,6 +117,7 @@ body {
 }
 
 .searchForm button {
+  font-family: "Orbitron", sans-serif;
   border: 0;
   border-radius: 50%;
   width: 60px;
@@ -175,6 +187,10 @@ th, td {
   color: #fff;
   text-align: center;
   font-size: 18px;
+}
+
+th[colspan="2"] {
+  width: 200px; /* Adjust the width as needed */
 }
 
 td:last-child {
@@ -342,6 +358,7 @@ td:last-child button {
 }
 
 .modal-buttons button {
+  font-family: "Orbitron", sans-serif;
   color: #fff;
   padding: 5px;
   cursor: pointer;
@@ -368,6 +385,22 @@ td:last-child button {
 
 .modal-buttons button:hover::before {
   width: 100%;
+}
+
+#error {
+  text-align: center;
+  display: none;
+  margin: 0;
+  padding: 0;
+  color: red;
+}
+
+#success {
+  display: none;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  color: white;
 }
 
 /* FOR TABBING */
