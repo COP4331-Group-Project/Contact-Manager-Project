@@ -185,11 +185,11 @@ function registerNewUser()
         }
 
     }
+
     // Handles a valid form and sending to the database
     let hashedPassword = md5(password);
 
-    let formData =
-    {
+    let formData = {
         FirstName: firstName,
         LastName: lastName,
         Login: username,
@@ -198,19 +198,39 @@ function registerNewUser()
 
     let payload = JSON.stringify(formData);
 
-
     const url = urlBase + '/Register.' + extension;
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-    try {
-            xhr.send(payload);
+
+    // Add an event listener to handle the response
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) { // Check if the request is complete
+            if (xhr.status == 200) { // Check if the status code is 200 (OK)
+
+                // Show a success message when we get the 200 code back
+                const registerSuccess = document.getElementById('registerSuccess');
+                registerSuccess.style.display = "block";
+                registerSuccess.style.color = "green";
+                registerSuccess.textContent = "User Successfully Registered!";
+
+                // Clear the input fields
+                firstNameInput.value = "";
+                lastNameInput.value = "";
+                usernameInput.value = "";
+                passwordInput.value = "";
+            } else {
+                console.error("Registration failed:", xhr.statusText);
+            }
         }
-    catch (err)
-    {
-        console.log("err");
+    };
+
+    try {
+        xhr.send(payload);
+    } catch (err) {
+        console.error(err);
     }
-    console.log("SUCCESS");
+
     return;
 }
 

@@ -7,7 +7,7 @@
   </head>
   <body onload="search()">
     <header class="header">
-      <h1>RETRO CONTACTS</h1>
+      <h1 class="headerName">RETRO CONTACTS</h1>
       <!-- NAV BAR -->
       <nav class="navbar">
         <button type="button" onclick="refreshPage()">HOME</button>
@@ -55,8 +55,8 @@
       <form class="modal-form" id="addContactForm">
         <div class="modal-input-container">
           <div class="modal-input-row">
-            <input type="text" id="newFirstName" placeholder="First Name">
-            <input type="text" id="newLastName" placeholder="Last Name">
+            <input type="text" id="newFirstName" placeholder="First Name" required>
+            <input type="text" id="newLastName" placeholder="Last Name" required>
           </div>
           <div class="modal-input-row">
             <input type="email" id="newEmail" placeholder="Email">
