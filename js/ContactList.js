@@ -2,7 +2,9 @@ const urlBase = 'http://cop4331-group23.com/LAMPAPI';
 const extension = 'php';
 const modalIdToClose = ['editModal', 'addContactModal']
 let contactId = null;
-// Loads the window with all users contacts
+let currentContactData = { curFN: null, curLN: null, curEmail: null, curPhone: null };
+const contactFormMsg = document.getElementById("addContactFormMsg");
+const editContactFormMsg = document.getElementById("editContactFormMsg");
 
 function deleteRow(button) {
   var row = button.parentNode.parentNode;
@@ -50,12 +52,17 @@ async function deleteFromContactAsync(tmp)
 function openEditContactModal(button) {
   // Get the row ID
   contactId = button.parentNode.parentNode.id;
-
-  // Populate the form with row data
   document.getElementById('editFirstName').value = button.getAttribute('data-firstname');
   document.getElementById('editLastName').value = button.getAttribute('data-lastname');
   document.getElementById('editEmail').value = button.getAttribute('data-email');
   document.getElementById('editPhone').value = button.getAttribute('data-phone');
+
+  currentContactData = {
+    curFN: document.getElementById('editFirstName').value,
+    curLN: document.getElementById('editLastName').value,
+    curEmail: document.getElementById('editEmail').value,
+    curPhone: document.getElementById('editPhone').value
+  }
 
   // Open the modal
   const modalId = button.getAttribute('data-modal-id');
@@ -69,8 +76,20 @@ function updateRow()
     // Get the data to send
     let updatedFN = document.getElementById('editFirstName').value;
     let updatedLN = document.getElementById('editLastName').value;
-    let updatedPhone = document.getElementById('editEmail').value;
-    let updatedEmail = document.getElementById('editPhone').value;
+    let updatedPhone = document.getElementById('editPhone').value;
+    let updatedEmail = document.getElementById('editEmail').value;
+
+    if (
+        currentContactData.curFN === updatedFN &&
+        currentContactData.curLN === updatedLN &&
+        currentContactData.curEmail === updatedEmail &&
+        currentContactData.curPhone === updatedPhone
+      ) {
+        editContactFormMsg.style.display = 'block';
+        editContactFormMsg.style.color = 'red';
+        editContactFormMsg.textContent = "No Information Changed!";
+        return;
+      }
 
     let tmp =
     {
@@ -78,17 +97,10 @@ function updateRow()
       FirstName: updatedFN,
       LastName: updatedLN,
       Phone: updatedPhone,
-      Email: updatedEmail
+      Email: updatedEmail,
     }
 
-    updateContactAsync(tmp).catch((error) =>
-    {
-      console.log(error.message);
-    });
-
-    // Close the dialog
-    const editForm = document.getElementById("editModal");
-    editForm.close();
+    updateContactAsync(tmp).catch((error) => console.log(error.message));
   }
 
   // Reset the editRowIndex
@@ -109,6 +121,9 @@ async function updateContactAsync(tmp)
 
     if (response.status === 200)
     {
+      editContactFormMsg.style.display = 'block';
+      editContactFormMsg.style.color = 'white';
+      editContactFormMsg.textContent = "Contact Updated!";
       search();
     }
     else
@@ -134,6 +149,21 @@ const addContact = () =>
 function closeModal(id) {
   const modal = document.getElementById(id);
   modal.close();
+
+  // Reset Form Error Validation
+  contactFormMsg.style.display = "none";
+  editContactFormMsg.style.display = "none";
+  // Clear the input fields of the forms
+  // Reset Add Contact Form
+  document.getElementById('newFirstName').value = "";
+  document.getElementById('newLastName').value = "";
+  document.getElementById('newEmail').value = "";
+  document.getElementById('newPhoneNum').value = "";
+  // Reset Edit Contact Form
+  document.getElementById('editFirstName').value = "";
+  document.getElementById('editLastName').value = "";
+  document.getElementById('editPhone').value = "";
+  document.getElementById('editEmail').value = "";
   // Reset the editRowIndex
   editRowIndex = -1;
 }
@@ -230,8 +260,10 @@ function search()
             fnCell.innerHTML = results.FirstName;
             lnCell.innerHTML = results.LastName;
             emailCell.innerHTML = results.Email;
-            phoneCell.innerHTML = results.Phone;
-
+            // puts phone # in (xxx)-xxx-xxxx format
+            const formattedPhoneNumber = 
+            `(${results.Phone.slice(0, 3)})-${results.Phone.slice(3, 6)}-${results.Phone.slice(6)}`;
+            phoneCell.innerHTML = formattedPhoneNumber;
             // Add Action Cells
             actionCell1.innerHTML = `
             <td>
@@ -280,6 +312,23 @@ function add()
   let newLastName = document.getElementById('newLastName').value;
   let newEmail = document.getElementById('newEmail').value;
   let newPhoneNum = document.getElementById('newPhoneNum').value;
+  // Hanlde form validation
+  // First name
+  if (newFirstName === "" || newLastName === "")
+  {
+    contactFormMsg.style.display = "block";
+    contactFormMsg.style.color = "red";
+    contactFormMsg.textContent = "Please Enter a Valid First/Last Name!";
+    return;
+  }
+  if (newEmail === "" || newPhoneNum === "")
+  {
+    contactFormMsg.style.display = "block";
+    contactFormMsg.style.color = "red";
+    contactFormMsg.textContent = "Please Enter a Valid Email/Phone Number!";
+    return;
+  }
+  
 	let tmp =
   {
     FirstName: newFirstName,
@@ -302,8 +351,17 @@ function add()
 		{
 			if (this.readyState == 4 && this.status == 200)
 			{
+        // Show a success message when we get the 200 code back
+        contactFormMsg.style.display = "block";
+        contactFormMsg.style.color = "white";
+        contactFormMsg.textContent = "Contact Successfully Added!";
         search();
-        contactModal.close();
+
+        // Clear the input fields
+        document.getElementById('newFirstName').value = "";
+        document.getElementById('newLastName').value = "";
+        document.getElementById('newEmail').value = "";
+        document.getElementById('newPhoneNum').value = "";
 			}
 		};
 		xhr.send(jsonPayload);
