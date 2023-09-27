@@ -66,6 +66,7 @@ body {
   color: #fff;
   border-bottom: 2px solid #fff;
   animation: neonBorderBottom 10s infinite;
+  font-family: "Orbitron", sans-serif;
 }
 
 .container {
@@ -320,7 +321,7 @@ td:last-child button {
 }
 
 .modal-input-row {
-  margin: 15px;
+  margin: 10px;
 }
 
 .modal-input-row input {
@@ -387,20 +388,18 @@ td:last-child button {
   width: 100%;
 }
 
-#error {
-  text-align: center;
+#addContactFormMsg {
   display: none;
+  text-align: center;
   margin: 0;
   padding: 0;
-  color: red;
 }
 
-#success {
-  display: none;
+#editContactFormMsg {
   text-align: center;
+  display: none;
   margin: 0;
   padding: 0;
-  color: white;
 }
 
 /* FOR TABBING */
@@ -408,6 +407,7 @@ td:last-child button {
   animation: borderChange 2s infinite;
   outline: none;
 }
+
 .modal-buttons button:focus::before {
   content: '';
   position: absolute;

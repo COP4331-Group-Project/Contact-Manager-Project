@@ -51,8 +51,7 @@
     <!-- ADD CONTACT MODAL  -->
     <dialog id="addContactModal" class="modal">
       <h2>Add Contact</h2>
-      <h5 id="error">Error Adding Contact!</h5>
-      <h5 id="success">Successfully Added Contact!</h5>
+      <h5 id="addContactFormMsg"></h5>
       <form class="modal-form" id="addContactForm">
         <div class="modal-input-container">
           <div class="modal-input-row">
@@ -60,11 +59,11 @@
             <input type="text" id="newLastName" placeholder="Last Name" required>
           </div>
           <div class="modal-input-row">
-            <input type="email" id="newEmail" placeholder="Email" required>
-            <input type="number" id="newPhoneNum" placeholder="Phone Number" required>
+            <input type="email" id="newEmail" placeholder="Email">
+            <input type="number" id="newPhoneNum" placeholder="Phone (xxx)-xxx-xxxx">
           </div>
           <div class="modal-buttons">
-            <button type="button" onclick="closeModal('addContactModal')">Cancel</button>
+            <button type="button" onclick="closeModal('addContactModal')">Close</button>
             <button type="button" onclick="add()">Add Contact</button>
             <span id="contactSearchResult"></span>
           </div>
@@ -74,6 +73,7 @@
     <!-- Edit form initially hidden-->
     <dialog id="editModal" class="modal">
       <h2>Edit Contact</h2>
+      <h5 id="editContactFormMsg"></h5>
       <form class="modal-form" id="editRowForm">
         <div class="modal-input-container">
           <div class="modal-input-row">
@@ -81,11 +81,11 @@
             <input type="text" id="editLastName" placeholder="Last Name">
           </div>
           <div class="modal-input-row">
-            <input type="text" id="editEmail" placeholder="Email">
-            <input type="text" id="editPhone" placeholder="Phone Number">
+            <input type="email" id="editEmail" placeholder="Email">
+            <input type="number" id="editPhone" placeholder="Phone Number">
           </div>
           <div class="modal-buttons">
-            <button type="button" onclick="closeModal('editModal')">Cancel</button>
+            <button type="button" onclick="closeModal('editModal')">Close</button>
             <button type="button" onclick="updateRow()">Confirm</button>
           </div>
         </div>
