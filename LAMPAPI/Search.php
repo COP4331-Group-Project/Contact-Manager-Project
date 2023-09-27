@@ -2,24 +2,24 @@
 
 	session_start(); // Start a PHP session (if not already started)
 	$inData = getRequestInfo();
-	
+
 	$searchResults = "";
 	$searchCount = 0;
 
-	$conn = new mysqli("localhost", "Admin", "Dev123", "COP4331"); 
-	if ($conn->connect_error) 
+	$conn = new mysqli("localhost", "Admin", "Dev123", "COP4331");
+	if ($conn->connect_error)
 	{
 		returnWithError( $conn->connect_error );
-	} 
+	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE FirstName LIKE ? and UserID=?");
-		$firstName = "%" . $inData["FirstName"] . "%";
-		$stmt->bind_param("ss", $firstName, $_SESSION["UserID"]);
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName LIKE ? OR LastName LIKE ? OR Phone LIKE ? OR Email LIKE ?) and UserID=?");
+		$searchTerm = "%" . $inData["search"] . "%";
+		$stmt->bind_param("sssss", $searchTerm, $searchTerm, $searchTerm, $searchTerm, $inData["userId"]);
 		$stmt->execute();
-		
+
 		$result = $stmt->get_result();
-		
+
 		while($row = $result->fetch_assoc())
 		{
 			if( $searchCount > 0 )
@@ -29,7 +29,7 @@
 			$searchCount++;
 			$searchResults .= json_encode($row);
 		}
-		
+
 		if( $searchCount == 0 )
 		{
 			returnWithError( "No Records Found" );
@@ -38,7 +38,7 @@
 		{
 			returnWithInfo( $searchResults );
 		}
-		
+
 		$stmt->close();
 		$conn->close();
 	}
@@ -53,17 +53,17 @@
 		header('Content-type: application/json');
 		echo $obj;
 	}
-	
+
 	function returnWithError( $err )
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 	function returnWithInfo( $searchResults )
 	{
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
 		sendResultInfoAsJson( $retValue );
 	}
-	
+
 ?>

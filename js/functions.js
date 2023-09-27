@@ -209,21 +209,35 @@ function registerNewUser()
             if (xhr.status == 200) { // Check if the status code is 200 (OK)
 
                 // Show a success message when we get the 200 code back
+                passErrorMsg.style.display = 'none';
                 const registerSuccess = document.getElementById('registerSuccess');
-                registerSuccess.style.display = "block";
-                registerSuccess.style.color = "green";
                 registerSuccess.textContent = "User Successfully Registered!";
+                registerSuccess.style.color = 'green';
+                registerSuccess.style.display = 'block';
 
                 // Clear the input fields
                 firstNameInput.value = "";
+                firstNameInput.placeholder = "First Name";
                 lastNameInput.value = "";
+                lastNameInput.placeholder = "Last Name";
                 usernameInput.value = "";
+                usernameInput.placeholder = "Username";
                 passwordInput.value = "";
+                passwordInput.placeholder = "Password";
+
             } else {
                 console.error("Registration failed:", xhr.statusText);
             }
         }
+
+         // Wait for 3 seconds and then redirect
+        setTimeout(function () {
+	    login();
+
+            registerSuccess.style.display = 'none';
+        }, 3000); // 3000 milliseconds = 3 seconds
     };
+
 
     try {
         xhr.send(payload);

@@ -261,7 +261,7 @@ function search()
             lnCell.innerHTML = results.LastName;
             emailCell.innerHTML = results.Email;
             // puts phone # in (xxx)-xxx-xxxx format
-            const formattedPhoneNumber = 
+            const formattedPhoneNumber =
             `(${results.Phone.slice(0, 3)})-${results.Phone.slice(3, 6)}-${results.Phone.slice(6)}`;
             phoneCell.innerHTML = formattedPhoneNumber;
             // Add Action Cells
@@ -307,69 +307,75 @@ function search()
 
 function add()
 {
-  const userId = localStorage.getItem("userId");
-  let newFirstName = document.getElementById('newFirstName').value;
-  let newLastName = document.getElementById('newLastName').value;
-  let newEmail = document.getElementById('newEmail').value;
-  let newPhoneNum = document.getElementById('newPhoneNum').value;
-  // Hanlde form validation
-  // First name
-  if (newFirstName === "" || newLastName === "")
-  {
-    contactFormMsg.style.display = "block";
-    contactFormMsg.style.color = "red";
-    contactFormMsg.textContent = "Please Enter a Valid First/Last Name!";
-    return;
-  }
-  if (newEmail === "" || newPhoneNum === "")
-  {
-    contactFormMsg.style.display = "block";
-    contactFormMsg.style.color = "red";
-    contactFormMsg.textContent = "Please Enter a Valid Email/Phone Number!";
-    return;
-  }
-  
-	let tmp =
-  {
-    FirstName: newFirstName,
-    LastName: newLastName,
-    Phone: newPhoneNum,
-    Email: newEmail,
-    UserID: userId,
-  };
+    const userId = localStorage.getItem("userId");
+    let newFirstName = document.getElementById('newFirstName').value;
+    let newLastName = document.getElementById('newLastName').value;
+    let newEmail = document.getElementById('newEmail').value;
+    let newPhoneNum = document.getElementById('newPhoneNum').value;
 
-	let jsonPayload = JSON.stringify( tmp );
+    console.log(newFirstName);
+    console.log(newLastName);
+    console.log(newEmail);
+    console.log(newPhoneNum);
+    // Handle form validation
+    // First name
+    if (newFirstName === "" || newLastName === "")
+    {
+      contactFormMsg.style.display = "block";
+      contactFormMsg.style.color = "red";
+      contactFormMsg.textContent = "Please Enter a Valid First/Last Name!";
+      return;
+    }
+    console.log("updated");
+    if (newEmail === "" || newPhoneNum === "")
+    {
+      contactFormMsg.style.display = "block";
+      contactFormMsg.style.color = "red";
+      contactFormMsg.textContent = "Please Enter a Valid Email/Phone Number!";
+      return;
+    }
 
-	let url = urlBase + '/Create.' + extension;
+  	let tmp =
+    {
+      FirstName: newFirstName,
+      LastName: newLastName,
+      Phone: newPhoneNum,
+      Email: newEmail,
+      UserID: userId,
+    };
 
-	let xhr = new XMLHttpRequest();
-	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
-	try
-	{
-		xhr.onreadystatechange = function()
-		{
-			if (this.readyState == 4 && this.status == 200)
-			{
-        // Show a success message when we get the 200 code back
-        contactFormMsg.style.display = "block";
-        contactFormMsg.style.color = "white";
-        contactFormMsg.textContent = "Contact Successfully Added!";
-        search();
+  	let jsonPayload = JSON.stringify( tmp );
 
-        // Clear the input fields
-        document.getElementById('newFirstName').value = "";
-        document.getElementById('newLastName').value = "";
-        document.getElementById('newEmail').value = "";
-        document.getElementById('newPhoneNum').value = "";
-			}
-		};
-		xhr.send(jsonPayload);
-	}
-	catch(err)
-	{
-    console.log("Error");
-	}
+  	let url = urlBase + '/Create.' + extension;
+
+  	let xhr = new XMLHttpRequest();
+  	xhr.open("POST", url, true);
+  	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+  	try
+  	{
+  		xhr.onreadystatechange = function()
+  		{
+  			if (this.readyState == 4 && this.status == 200)
+  			{
+          // Show a success message when we get the 200 code back
+          contactFormMsg.style.display = "block";
+          contactFormMsg.style.color = "white";
+          contactFormMsg.textContent = "Contact Successfully Added!";
+          search();
+
+          // Clear the input fields
+          document.getElementById('newFirstName').value = "";
+          document.getElementById('newLastName').value = "";
+          document.getElementById('newEmail').value = "";
+          document.getElementById('newPhoneNum').value = "";
+  			}
+  		};
+  		xhr.send(jsonPayload);
+  	}
+  	catch(err)
+  	{
+      console.log("Error");
+  	}
 }
 
 const refreshPage = () => window.location.reload();
